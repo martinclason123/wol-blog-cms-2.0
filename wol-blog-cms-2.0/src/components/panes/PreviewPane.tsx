@@ -6,7 +6,7 @@ const PreviewPane = () => {
   const { modules } = useContext(ModulesContext);
 
   return (
-    <div>
+    <div className="preview-pane">
       <h2>Preview Pane</h2>
       {/* Render the preview of the blog based on the modules */}
     </div>

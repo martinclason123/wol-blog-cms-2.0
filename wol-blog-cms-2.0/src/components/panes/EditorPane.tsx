@@ -6,7 +6,7 @@ const EditorPane = () => {
   const { modules, updateModuleElement } = useContext(ModulesContext);
 
   return (
-    <div>
+    <div className="editor-pane">
       <h2>Editor Pane</h2>
       {/* Editing functionality of the selected module goes here */}
     </div>

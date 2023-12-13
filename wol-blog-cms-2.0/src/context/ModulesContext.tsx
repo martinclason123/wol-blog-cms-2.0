@@ -20,6 +20,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   // Define the initial Header Banner module
   const initialHeaderBanner: HeaderBannerModule = {
     id: 1,
+    title: "Header Banner",
     elements: {
       overlayText: { title: "overlay text", type: "text", value: "Banner" },
       title: { title: "title", type: "text", value: "Blog" },
@@ -32,6 +33,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   // Define the initial Quote module
   const initialQuoteModule: QuoteModule = {
     id: 2,
+    title: "Quote",
     elements: {
       quote: { title: "quote", type: "text", value: "Inspiring quote" },
     },

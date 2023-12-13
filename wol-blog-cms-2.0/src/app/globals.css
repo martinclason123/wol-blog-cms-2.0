@@ -99,3 +99,18 @@ a {
     color-scheme: dark;
   }
 }
+
+.cms-layout {
+  display: flex;
+}
+
+.preview-pane {
+  width: 60%;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+
+.editor-pane,
+.selector-pane {
+  width: 20%;
+}
