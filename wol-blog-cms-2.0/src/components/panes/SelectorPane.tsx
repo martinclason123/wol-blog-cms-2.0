@@ -1,17 +1,30 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { ModulesContext } from "@/context/ModulesContext";
+import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
 
 const SelectorPane = () => {
-  const { modules, setSelectedModuleAndElement } = useContext(ModulesContext);
+  const { modules, setModules, setSelectedModuleAndElement } =
+    useContext(ModulesContext);
   const [openedModuleId, setOpenedModuleId] = useState<number | null>(null);
+  const [isAddMenuOpen, setAddMenuOpen] = useState(false);
 
   const toggleModule = (moduleId: number) => {
     if (openedModuleId === moduleId) {
-      setOpenedModuleId(null); // Close if it's already open
+      setOpenedModuleId(null);
     } else {
-      setOpenedModuleId(moduleId); // Open the clicked one
+      setOpenedModuleId(moduleId);
     }
+  };
+
+  const addModule = (type: string) => {
+    const newId = Math.max(0, ...modules.map((m) => m.id)) + 1; // Generate a new unique ID
+    const newModule =
+      type === "Header Banner"
+        ? createHeaderBannerModule(newId)
+        : createQuoteModule(newId);
+    setModules([...modules, newModule]);
+    setAddMenuOpen(false); // Close the add menu
   };
 
   return (
@@ -36,7 +49,17 @@ const SelectorPane = () => {
           )}
         </div>
       ))}
-      {/* Add button functionality can be implemented here */}
+      <button onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
+        {isAddMenuOpen ? "-" : "+"} {/* Toggle button */}
+      </button>
+      {isAddMenuOpen && (
+        <div>
+          <button onClick={() => addModule("Header Banner")}>
+            Header Banner
+          </button>
+          <button onClick={() => addModule("Quote")}>Quote</button>
+        </div>
+      )}
     </div>
   );
 };

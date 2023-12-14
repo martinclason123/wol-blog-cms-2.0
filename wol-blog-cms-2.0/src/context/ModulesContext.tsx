@@ -6,6 +6,7 @@ import { createHeaderBannerModule, createQuoteModule } from "../factories";
 // Define the type for the context state
 type ModulesContextState = {
   modules: Module[];
+  setModules: (modules: Module[]) => void; // Add setModules to the context state type
   selectedModuleId: number | null;
   selectedElementKey: string | null;
   setSelectedModuleAndElement: (
@@ -27,6 +28,7 @@ interface ModulesProviderProps {
 // Creating the context with an initial empty state
 const ModulesContext = createContext<ModulesContextState>({
   modules: [],
+  setModules: () => {}, // Initialize setModules
   selectedModuleId: null,
   selectedElementKey: null,
   setSelectedModuleAndElement: () => {},
@@ -79,6 +81,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   // Context value
   const value = {
     modules,
+    setModules, // Include setModules in the context value
     selectedModuleId,
     selectedElementKey,
     setSelectedModuleAndElement,
