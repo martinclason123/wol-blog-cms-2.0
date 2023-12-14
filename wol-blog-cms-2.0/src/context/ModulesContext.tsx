@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useState, ReactNode } from "react";
-import { HeaderBannerModule, QuoteModule, Module } from "../types/moduleTypes";
+import { Module } from "../types/moduleTypes";
+import { createHeaderBannerModule, createQuoteModule } from "../factories";
 
 // Define the type for the context state
 type ModulesContextState = {
@@ -13,7 +14,7 @@ type ModulesContextState = {
   ) => void;
   updateModuleElement: (
     moduleId: number,
-    elementKey: keyof Module["elements"],
+    elementKey: string,
     newValue: string
   ) => void;
 };
@@ -34,57 +35,10 @@ const ModulesContext = createContext<ModulesContextState>({
 
 // Define the provider component
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
-  // Define the initial Header Banner module
-  const initialHeaderBanner: HeaderBannerModule = {
-    id: 1,
-    title: "Header Banner",
-    elements: {
-      overlayText: { title: "overlay text", type: "text", value: "Banner" },
-      title: { title: "title", type: "text", value: "Blog" },
-      subtitle: { title: "subtitle", type: "text", value: "blog sub" },
-      mobileImage: { title: "mobileImage", type: "image", value: "" },
-      desktopImage: { title: "desktopImage", type: "image", value: "" },
-    },
-  };
-
-  // Define the initial Quote modules
-  const initialQuoteModules: QuoteModule[] = [
-    {
-      id: 2,
-      title: "Quote",
-      elements: {
-        quote: { title: "quote", type: "text", value: "Inspiring quote" },
-      },
-    },
-    {
-      id: 3,
-      title: "Quote",
-      elements: {
-        quote: {
-          title: "quote",
-          type: "text",
-          value: "Another inspiring quote",
-        },
-      },
-    },
-  ];
-  const initialHeaderBanner2: HeaderBannerModule = {
-    id: 4,
-    title: "Header Banner",
-    elements: {
-      overlayText: { title: "overlay text", type: "text", value: "Banner" },
-      title: { title: "title", type: "text", value: "Blog" },
-      subtitle: { title: "subtitle", type: "text", value: "blog sub" },
-      mobileImage: { title: "mobileImage", type: "image", value: "" },
-      desktopImage: { title: "desktopImage", type: "image", value: "" },
-    },
-  };
-
-  // Initial state with the Header Banner and Quote modules
+  // Initial state with default modules
   const [modules, setModules] = useState<Module[]>([
-    initialHeaderBanner,
-    ...initialQuoteModules,
-    initialHeaderBanner2,
+    createHeaderBannerModule(1),
+    createQuoteModule(2),
   ]);
 
   // Additional state for tracking selected module and element
@@ -105,7 +59,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   // Function to update a specific element in a module
   const updateModuleElement = (
     moduleId: number,
-    elementKey: keyof Module["elements"],
+    elementKey: string,
     newValue: string
   ) => {
     setModules((currentModules) => {
