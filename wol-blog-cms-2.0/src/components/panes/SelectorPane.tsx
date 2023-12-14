@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { ModulesContext } from "@/context/ModulesContext";
 
 const SelectorPane = () => {
-  const { modules } = useContext(ModulesContext);
+  const { modules, setSelectedModuleAndElement } = useContext(ModulesContext);
   const [openedModuleId, setOpenedModuleId] = useState<number | null>(null);
 
   const toggleModule = (moduleId: number) => {
@@ -25,7 +25,12 @@ const SelectorPane = () => {
           {openedModuleId === module.id && (
             <div className="module-elements">
               {Object.entries(module.elements).map(([key, element]) => (
-                <div key={key}>{element.title}</div>
+                <div
+                  key={key}
+                  onClick={() => setSelectedModuleAndElement(module.id, key)}
+                >
+                  {element.title}
+                </div>
               ))}
             </div>
           )}

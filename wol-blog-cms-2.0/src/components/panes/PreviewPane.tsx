@@ -8,7 +8,19 @@ const PreviewPane = () => {
   return (
     <div className="preview-pane">
       <h2>Preview Pane</h2>
-      {/* Render the preview of the blog based on the modules */}
+      {modules.map((module, index) => (
+        <div
+          key={index}
+          style={{ padding: "10px", borderBottom: "1px solid grey" }}
+        >
+          <h3>{module.title}</h3>
+          {Object.entries(module.elements).map(([key, element]) => (
+            <p key={key}>
+              {element.title}: {element.value}
+            </p>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
