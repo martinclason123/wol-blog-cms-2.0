@@ -4,8 +4,13 @@ import { ModulesContext } from "@/context/ModulesContext";
 import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
 
 const SelectorPane = () => {
-  const { modules, setModules, setSelectedModuleAndElement } =
-    useContext(ModulesContext);
+  const {
+    modules,
+    setModules,
+    deleteModule,
+    moveModule,
+    setSelectedModuleAndElement,
+  } = useContext(ModulesContext);
   const [openedModuleId, setOpenedModuleId] = useState<number | null>(null);
   const [isAddMenuOpen, setAddMenuOpen] = useState(false);
 
@@ -27,14 +32,25 @@ const SelectorPane = () => {
     setAddMenuOpen(false); // Close the add menu
   };
 
+  const handleDelete = (moduleId: number) => {
+    deleteModule(moduleId);
+  };
+
+  const handleMove = (moduleId: number, direction: "up" | "down") => {
+    moveModule(moduleId, direction);
+  };
+
   return (
     <div className="selector-pane">
       <h2>Selector Pane</h2>
       {modules.map((module) => (
         <div key={module.id}>
-          <button onClick={() => toggleModule(module.id)}>
-            {module.title}
-          </button>
+          <div
+            className="module-selector"
+            onClick={() => toggleModule(module.id)}
+          >
+            <span>{module.title}</span>
+          </div>
           {openedModuleId === module.id && (
             <div className="module-elements">
               {Object.entries(module.elements).map(([key, element]) => (
@@ -45,12 +61,17 @@ const SelectorPane = () => {
                   {element.title}
                 </div>
               ))}
+              <div className="module-controllers">
+                <button onClick={() => handleMove(module.id, "up")}>^</button>
+                <button onClick={() => handleMove(module.id, "down")}>ˇ</button>
+                <button onClick={() => handleDelete(module.id)}>x</button>
+              </div>
             </div>
           )}
         </div>
       ))}
       <button onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
-        {isAddMenuOpen ? "-" : "+"} {/* Toggle button */}
+        {isAddMenuOpen ? "-" : "+"}
       </button>
       {isAddMenuOpen && (
         <div>

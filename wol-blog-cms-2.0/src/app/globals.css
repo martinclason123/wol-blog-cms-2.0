@@ -114,3 +114,13 @@ a {
 .selector-pane {
   width: 20%;
 }
+
+.module-selector {
+  display: flex;
+  justify-content: space-between;
+}
+.module-controllers {
+  display: flex;
+  gap: 16px;
+  z-index: 999;
+}

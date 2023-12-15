@@ -6,7 +6,9 @@ import { createHeaderBannerModule, createQuoteModule } from "../factories";
 // Define the type for the context state
 type ModulesContextState = {
   modules: Module[];
-  setModules: (modules: Module[]) => void; // Add setModules to the context state type
+  setModules: (modules: Module[]) => void;
+  deleteModule: (moduleId: number) => void;
+  moveModule: (moduleId: number, direction: "up" | "down") => void;
   selectedModuleId: number | null;
   selectedElementKey: string | null;
   setSelectedModuleAndElement: (
@@ -25,31 +27,46 @@ interface ModulesProviderProps {
   children: ReactNode;
 }
 
-// Creating the context with an initial empty state
 const ModulesContext = createContext<ModulesContextState>({
   modules: [],
-  setModules: () => {}, // Initialize setModules
+  setModules: () => {},
+  deleteModule: () => {},
+  moveModule: () => {},
   selectedModuleId: null,
   selectedElementKey: null,
   setSelectedModuleAndElement: () => {},
   updateModuleElement: () => {},
 });
 
-// Define the provider component
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
-  // Initial state with default modules
   const [modules, setModules] = useState<Module[]>([
     createHeaderBannerModule(1),
     createQuoteModule(2),
   ]);
 
-  // Additional state for tracking selected module and element
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
   const [selectedElementKey, setSelectedElementKey] = useState<string | null>(
     null
   );
 
-  // Function to set the selected module and element
+  const deleteModule = (moduleId: number) => {
+    setModules(modules.filter((module) => module.id !== moduleId));
+  };
+
+  const moveModule = (moduleId: number, direction: "up" | "down") => {
+    const index = modules.findIndex((module) => module.id === moduleId);
+    if (index === -1) return; // Module not found
+
+    const newIndex = direction === "up" ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= modules.length) return; // New index out of bounds
+
+    const newModules = [...modules];
+    const [removedModule] = newModules.splice(index, 1);
+    newModules.splice(newIndex, 0, removedModule);
+
+    setModules(newModules);
+  };
+
   const setSelectedModuleAndElement = (
     moduleId: number | null,
     elementKey: string | null
@@ -58,7 +75,6 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     setSelectedElementKey(elementKey);
   };
 
-  // Function to update a specific element in a module
   const updateModuleElement = (
     moduleId: number,
     elementKey: string,
@@ -78,10 +94,11 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     });
   };
 
-  // Context value
   const value = {
     modules,
-    setModules, // Include setModules in the context value
+    setModules,
+    deleteModule,
+    moveModule,
     selectedModuleId,
     selectedElementKey,
     setSelectedModuleAndElement,
