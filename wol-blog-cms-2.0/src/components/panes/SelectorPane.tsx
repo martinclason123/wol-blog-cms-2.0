@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Chevron } from "../../svgs";
+import { Chevron, UpwardArrow, Trash, Plus } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
 import {
@@ -10,6 +10,8 @@ import {
   SelectorPaneList,
   SelectorElementsList,
   SelectorElement,
+  SelectorModuleControllers,
+  SelectorModuleMovers,
 } from "@/styles/SelectorPaneStyles";
 
 const SelectorPane = () => {
@@ -51,6 +53,7 @@ const SelectorPane = () => {
   };
 
   const handleMove = (moduleId: number, direction: "up" | "down") => {
+    console.log("move", moduleId, direction);
     moveModule(moduleId, direction);
   };
 
@@ -83,21 +86,25 @@ const SelectorPane = () => {
                     {element.title}
                   </SelectorElement>
                 ))}
-                <div className="module-controllers">
-                  <button onClick={() => handleMove(module.id, "up")}>^</button>
-                  <button onClick={() => handleMove(module.id, "down")}>
-                    ˇ
-                  </button>
-                  <button onClick={() => handleDelete(module.id)}>x</button>
-                </div>
+                <SelectorModuleControllers>
+                  <SelectorModuleMovers>
+                    <UpwardArrow
+                      degree={"-180deg"}
+                      onClick={() => handleMove(module.id, "up")}
+                    />
+                    <UpwardArrow
+                      degree={"0deg"}
+                      onClick={() => handleMove(module.id, "down")}
+                    />
+                  </SelectorModuleMovers>
+                  <Trash onClick={() => handleDelete(module.id)} />
+                </SelectorModuleControllers>
               </SelectorElementsList>
             )}
           </li>
         ))}
       </SelectorPaneList>
-      <button onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
-        {isAddMenuOpen ? "-" : "+"}
-      </button>
+      <Plus onClick={() => setAddMenuOpen(!isAddMenuOpen)} />
       {isAddMenuOpen && (
         <div>
           <button onClick={() => addModule("Header Banner")}>

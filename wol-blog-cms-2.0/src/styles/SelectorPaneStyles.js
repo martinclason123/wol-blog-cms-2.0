@@ -43,3 +43,12 @@ export const SelectorElement = styled.li`
   border-radius: 0.5em;
   background-color: ${(props) => (props.isActive ? "#f1f1f1" : "transparent")};
 `;
+
+export const SelectorModuleControllers = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SelectorModuleMovers = styled.div`
+  display: flex;
+`;
