@@ -1,7 +1,16 @@
 "use client";
 import React, { useContext, useState } from "react";
+import { Chevron } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
+import {
+  SelectorPaneContainer,
+  SelectorPaneHeader,
+  SelectorPaneHeaderTitle,
+  SelectorPaneList,
+  SelectorElementsList,
+  SelectorElement,
+} from "@/styles/SelectorPaneStyles";
 
 const SelectorPane = () => {
   const {
@@ -11,14 +20,19 @@ const SelectorPane = () => {
     moveModule,
     setSelectedModuleAndElement,
   } = useContext(ModulesContext);
-  const [openedModuleId, setOpenedModuleId] = useState<number | null>(null);
+  const [openedModuleIds, setOpenedModuleIds] = useState([]);
   const [isAddMenuOpen, setAddMenuOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
+  const handleSelectItem = (moduleId, elementKey) => {
+    setSelectedItemId(`${moduleId}-${elementKey}`);
+  };
 
   const toggleModule = (moduleId: number) => {
-    if (openedModuleId === moduleId) {
-      setOpenedModuleId(null);
+    if (openedModuleIds.includes(moduleId)) {
+      setOpenedModuleIds(openedModuleIds.filter((id) => id !== moduleId));
     } else {
-      setOpenedModuleId(moduleId);
+      setOpenedModuleIds([...openedModuleIds, moduleId]);
     }
   };
 
@@ -41,35 +55,46 @@ const SelectorPane = () => {
   };
 
   return (
-    <div className="selector-pane">
-      <h2>Selector Pane</h2>
-      {modules.map((module) => (
-        <div key={module.id}>
-          <div
-            className="module-selector"
-            onClick={() => toggleModule(module.id)}
-          >
-            <span>{module.title}</span>
-          </div>
-          {openedModuleId === module.id && (
-            <div className="module-elements">
-              {Object.entries(module.elements).map(([key, element]) => (
-                <div
-                  key={key}
-                  onClick={() => setSelectedModuleAndElement(module.id, key)}
-                >
-                  {element.title}
+    <SelectorPaneContainer>
+      <SelectorPaneList>
+        {modules.map((module) => (
+          <li key={module.id}>
+            <SelectorPaneHeader
+              onClick={() => {
+                toggleModule(module.id);
+                handleSelectItem(module.id, "header");
+              }}
+              isActive={selectedItemId === `${module.id}-header`}
+            >
+              <SelectorPaneHeaderTitle>{module.title}</SelectorPaneHeaderTitle>
+              <Chevron active={openedModuleIds.includes(module.id)} />
+            </SelectorPaneHeader>
+            {openedModuleIds.includes(module.id) && (
+              <SelectorElementsList>
+                {Object.entries(module.elements).map(([key, element]) => (
+                  <SelectorElement
+                    key={key}
+                    onClick={() => {
+                      setSelectedModuleAndElement(module.id, key);
+                      handleSelectItem(module.id, key);
+                    }}
+                    isActive={selectedItemId === `${module.id}-${key}`}
+                  >
+                    {element.title}
+                  </SelectorElement>
+                ))}
+                <div className="module-controllers">
+                  <button onClick={() => handleMove(module.id, "up")}>^</button>
+                  <button onClick={() => handleMove(module.id, "down")}>
+                    ˇ
+                  </button>
+                  <button onClick={() => handleDelete(module.id)}>x</button>
                 </div>
-              ))}
-              <div className="module-controllers">
-                <button onClick={() => handleMove(module.id, "up")}>^</button>
-                <button onClick={() => handleMove(module.id, "down")}>ˇ</button>
-                <button onClick={() => handleDelete(module.id)}>x</button>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
+              </SelectorElementsList>
+            )}
+          </li>
+        ))}
+      </SelectorPaneList>
       <button onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
         {isAddMenuOpen ? "-" : "+"}
       </button>
@@ -81,7 +106,7 @@ const SelectorPane = () => {
           <button onClick={() => addModule("Quote")}>Quote</button>
         </div>
       )}
-    </div>
+    </SelectorPaneContainer>
   );
 };
 
