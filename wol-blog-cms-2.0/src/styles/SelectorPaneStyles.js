@@ -52,3 +52,30 @@ export const SelectorModuleControllers = styled.div`
 export const SelectorModuleMovers = styled.div`
   display: flex;
 `;
+
+export const SelectorAddModule = styled.div`
+  display: flex;
+  gap: 0.5em;
+  cursor: pointer;
+  width: 60%;
+  padding-top: 0.75em;
+`;
+
+export const SelectorAddModuleText = styled.p`
+  font-size: 2.4em;
+  padding: 0.25em;
+`;
+
+export const ModuleList = styled(SelectorPaneList)`
+  padding-top: 0.75em;
+  border-top: 1px solid #f1f1f1;
+  margin-top: 0.75em;
+`;
+export const ModuleItem = styled.li`
+  display: flex;
+  gap: 1.5em;
+  cursor: pointer;
+`;
+export const ModuleItemText = styled.span`
+  font-size: 2.4em;
+`;

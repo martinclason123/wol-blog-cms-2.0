@@ -1,6 +1,14 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Chevron, UpwardArrow, Trash, Plus } from "../../svgs";
+import {
+  Chevron,
+  UpwardArrow,
+  Trash,
+  Plus,
+  TextIcon,
+  Quote,
+  BannerIcon,
+} from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
 import {
@@ -12,6 +20,11 @@ import {
   SelectorElement,
   SelectorModuleControllers,
   SelectorModuleMovers,
+  SelectorAddModule,
+  SelectorAddModuleText,
+  ModuleList,
+  ModuleItem,
+  ModuleItemText,
 } from "@/styles/SelectorPaneStyles";
 
 const SelectorPane = () => {
@@ -104,14 +117,22 @@ const SelectorPane = () => {
           </li>
         ))}
       </SelectorPaneList>
-      <Plus onClick={() => setAddMenuOpen(!isAddMenuOpen)} />
+      <SelectorAddModule onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
+        <Plus />
+        <SelectorAddModuleText>Add Module</SelectorAddModuleText>
+      </SelectorAddModule>
+
       {isAddMenuOpen && (
-        <div>
-          <button onClick={() => addModule("Header Banner")}>
-            Header Banner
-          </button>
-          <button onClick={() => addModule("Quote")}>Quote</button>
-        </div>
+        <ModuleList>
+          <ModuleItem onClick={() => addModule("Header Banner")}>
+            <BannerIcon />
+            <ModuleItemText>Header Banner</ModuleItemText>
+          </ModuleItem>
+          <ModuleItem onClick={() => addModule("Quote")}>
+            <Quote />
+            <ModuleItemText>Quote</ModuleItemText>
+          </ModuleItem>
+        </ModuleList>
       )}
     </SelectorPaneContainer>
   );
