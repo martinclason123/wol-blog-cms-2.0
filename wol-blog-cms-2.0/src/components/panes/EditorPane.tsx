@@ -1,6 +1,12 @@
 "use client";
 import React, { useContext } from "react";
 import { ModulesContext } from "@/context/ModulesContext";
+import {
+  EditorElementWrapper,
+  EditorElementLabel,
+  EditorElementInput,
+  EditorPaneWrapper,
+} from "../../styles/EditorPaneStyles";
 
 const EditorPane = () => {
   const { modules, updateModuleElement, selectedModuleId, selectedElementKey } =
@@ -18,19 +24,18 @@ const EditorPane = () => {
   const selectedElement = selectedModule?.elements[selectedElementKey];
 
   return (
-    <div className="editor-pane">
-      <h2>Editor Pane</h2>
+    <EditorPaneWrapper>
       {selectedElement && (
-        <div>
-          <label>{selectedElement.title}</label>
-          <input
+        <EditorElementWrapper>
+          <EditorElementLabel>{selectedElement.title}</EditorElementLabel>
+          <EditorElementInput
             type="text"
             value={selectedElement.value}
             onChange={(e) => handleInputChange(e.target.value)}
           />
-        </div>
+        </EditorElementWrapper>
       )}
-    </div>
+    </EditorPaneWrapper>
   );
 };
 

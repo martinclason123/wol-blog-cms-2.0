@@ -13,7 +13,8 @@ export const SelectorPaneList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 70%;
+  width: 100%;
+  padding-left: 6em;
   list-style: none;
 `;
 export const SelectorPaneHeader = styled.div`
@@ -48,6 +49,7 @@ export const SelectorElement = styled.li`
   display: flex;
   align-items: center;
   gap: 0.5em;
+  white-space: nowrap;
 `;
 
 export const SelectorModuleControllers = styled.div`
@@ -76,7 +78,7 @@ export const ModuleList = styled(SelectorPaneList)`
   padding-top: 0.75em;
   border-top: 1px solid #f1f1f1;
   margin-top: 0.75em;
-  width: 60%;
+  width: 70%;
 `;
 export const ModuleItem = styled.li`
   display: flex;

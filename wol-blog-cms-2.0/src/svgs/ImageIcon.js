@@ -1,6 +1,7 @@
 import styled from "styled-components";
 const Svg = styled.svg`
   width: 1.5em;
+  flex-shrink: 0;
 `;
 const ImageIcon = () => {
   return (
