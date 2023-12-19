@@ -1,18 +1,43 @@
 // createHeaderBannerModule.tsx
 import React from "react";
 import { HeaderBannerModule } from "../types/moduleTypes";
-import { BannerIcon } from "@/svgs";
+import { TextIcon, ImageIcon, BannerIcon } from "@/svgs";
 
 export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
   id,
   title: "Header Banner",
   icon: <BannerIcon />,
   elements: {
-    overlayText: { title: "overlay text", type: "text", value: "Banner" },
-    title: { title: "title", type: "text", value: "Blog" },
-    subtitle: { title: "subtitle", type: "text", value: "blog sub" },
-    mobileImage: { title: "mobileImage", type: "image", value: "" },
-    desktopImage: { title: "desktopImage", type: "image", value: "" },
+    overlayText: {
+      title: "Overlay Text",
+      type: "text",
+      value: "Banner Text",
+      icon: <TextIcon />,
+    },
+    title: {
+      title: "Title",
+      type: "text",
+      value: "Blog Title",
+      icon: <TextIcon />,
+    },
+    subtitle: {
+      title: "Subtitle",
+      type: "text",
+      value: "Blog Subtitle",
+      icon: <TextIcon />,
+    },
+    mobileImage: {
+      title: "Mobile Image",
+      type: "image",
+      value: "mobile.jpg",
+      icon: <ImageIcon />,
+    },
+    desktopImage: {
+      title: "Desktop Image",
+      type: "image",
+      value: "desktop.jpg",
+      icon: <ImageIcon />,
+    },
   },
 });
 

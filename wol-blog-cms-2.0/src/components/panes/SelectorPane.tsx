@@ -102,9 +102,11 @@ const SelectorPane = () => {
                     }}
                     isActive={selectedItemId === `${module.id}-${key}`}
                   >
+                    {element.icon} {/* Render the icon here */}
                     {element.title}
                   </SelectorElement>
                 ))}
+
                 <SelectorModuleControllers>
                   <SelectorModuleMovers>
                     <UpwardArrow

@@ -45,6 +45,9 @@ export const SelectorElement = styled.li`
   padding: 0.25em;
   border-radius: 0.5em;
   background-color: ${(props) => (props.isActive ? "#f1f1f1" : "transparent")};
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 `;
 
 export const SelectorModuleControllers = styled.div`

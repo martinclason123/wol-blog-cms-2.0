@@ -1,5 +1,5 @@
 // moduleTypes.ts
-import { Text } from "./elementTypes";
+import { Text, Image } from "./elementTypes";
 
 export interface HeaderBannerModule {
   id: number;
@@ -9,8 +9,8 @@ export interface HeaderBannerModule {
     overlayText: Text;
     title: Text;
     subtitle: Text;
-    mobileImage: Text;
-    desktopImage: Text;
+    mobileImage: Image;
+    desktopImage: Image;
   };
 }
 
