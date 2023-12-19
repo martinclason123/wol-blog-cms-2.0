@@ -14,6 +14,7 @@ import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // As
 import {
   SelectorPaneContainer,
   SelectorPaneHeader,
+  SelectorTitleWrapper,
   SelectorPaneHeaderTitle,
   SelectorPaneList,
   SelectorElementsList,
@@ -82,7 +83,12 @@ const SelectorPane = () => {
               }}
               isActive={selectedItemId === `${module.id}-header`}
             >
-              <SelectorPaneHeaderTitle>{module.title}</SelectorPaneHeaderTitle>
+              <SelectorTitleWrapper>
+                {module.icon}
+                <SelectorPaneHeaderTitle>
+                  {module.title}
+                </SelectorPaneHeaderTitle>
+              </SelectorTitleWrapper>
               <Chevron active={openedModuleIds.includes(module.id)} />
             </SelectorPaneHeader>
             {openedModuleIds.includes(module.id) && (

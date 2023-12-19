@@ -13,7 +13,7 @@ export const SelectorPaneList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 60%;
+  width: 70%;
   list-style: none;
 `;
 export const SelectorPaneHeader = styled.div`
@@ -22,7 +22,10 @@ export const SelectorPaneHeader = styled.div`
   cursor: pointer;
   background-color: ${(props) => (props.isActive ? "#f1f1f1" : "transparent")};
 `;
-
+export const SelectorTitleWrapper = styled.div`
+  display: flex;
+  gap: 0.5em;
+`;
 export const SelectorPaneHeaderTitle = styled.h2`
   font-size: 2.4em;
   text-align: left;
@@ -70,6 +73,7 @@ export const ModuleList = styled(SelectorPaneList)`
   padding-top: 0.75em;
   border-top: 1px solid #f1f1f1;
   margin-top: 0.75em;
+  width: 60%;
 `;
 export const ModuleItem = styled.li`
   display: flex;
