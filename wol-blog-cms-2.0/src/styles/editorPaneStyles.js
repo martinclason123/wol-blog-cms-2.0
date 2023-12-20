@@ -23,4 +23,4 @@ export const EditorElementLabel = styled.label`
 
 export const EditorElementInput = styled.input`
   font-size: 2.4em;
-`;
+`

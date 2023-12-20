@@ -6,3 +6,5 @@ export { default as Trash } from "./Trash.js";
 export { default as Plus } from "./Plus.js";
 export { default as Quote } from "./Quote.js";
 export { default as BannerIcon } from "./BannerIcon.js";
+export { default as DesktopIcon } from "./DesktopIcon.js";
+export { default as MobileIcon } from "./MobileIcon.js";

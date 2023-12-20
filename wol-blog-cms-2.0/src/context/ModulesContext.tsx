@@ -3,6 +3,8 @@ import React, { createContext, useState, ReactNode } from "react";
 import { Module } from "../types/moduleTypes";
 import { createHeaderBannerModule, createQuoteModule } from "../factories";
 
+type ViewMode = "mobile" | "desktop";
+
 // Define the type for the context state
 type ModulesContextState = {
   modules: Module[];
@@ -11,6 +13,8 @@ type ModulesContextState = {
   moveModule: (moduleId: number, direction: "up" | "down") => void;
   selectedModuleId: number | null;
   selectedElementKey: string | null;
+  viewMode: ViewMode;
+  toggleViewMode: () => void;
   setSelectedModuleAndElement: (
     moduleId: number | null,
     elementKey: string | null
@@ -36,6 +40,8 @@ const ModulesContext = createContext<ModulesContextState>({
   selectedElementKey: null,
   setSelectedModuleAndElement: () => {},
   updateModuleElement: () => {},
+  viewMode: "desktop",
+  toggleViewMode: () => {},
 });
 
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
@@ -65,6 +71,12 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     newModules.splice(newIndex, 0, removedModule);
 
     setModules(newModules);
+  };
+
+  const [viewMode, setViewMode] = useState<ViewMode>("desktop");
+
+  const toggleViewMode = () => {
+    setViewMode((prevMode) => (prevMode === "desktop" ? "mobile" : "desktop"));
   };
 
   const setSelectedModuleAndElement = (
@@ -103,6 +115,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     selectedElementKey,
     setSelectedModuleAndElement,
     updateModuleElement,
+    viewMode,
+    toggleViewMode,
   };
 
   return (
