@@ -12,3 +12,16 @@ export const Container = styled.div`
     font-size: 10px;
   }
 `;
+
+export const Picture = styled.picture`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+export const Source = styled.source``;
+
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;

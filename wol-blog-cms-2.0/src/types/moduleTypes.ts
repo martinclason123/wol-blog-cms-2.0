@@ -5,6 +5,7 @@ export interface HeaderBannerModule {
   id: number;
   title: string;
   icon: React.ReactNode;
+  preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
   elements: {
     overlayText: Text;
     title: Text;
@@ -18,6 +19,7 @@ export interface QuoteModule {
   id: number;
   title: string;
   icon: React.ReactNode;
+  preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
   elements: {
     quote: Text;
   };

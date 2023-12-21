@@ -12,19 +12,17 @@ const PreviewPane = () => {
     <PreviewPaneContainer>
       <PreviewModulesWrapper viewMode={viewMode}>
         <h2>Preview Pane</h2>
-        {modules.map((module, index) => (
-          <div
-            key={index}
-            style={{ padding: "10px", borderBottom: "1px solid grey" }}
-          >
-            <h3>{module.title}</h3>
-            {Object.entries(module.elements).map(([key, element]) => (
-              <p key={key}>
-                {element.title}: {element.value}
-              </p>
-            ))}
-          </div>
-        ))}
+        {modules.map((module, index) => {
+          const PreviewComponent = module.preview;
+          return (
+            <div
+              key={index}
+              style={{ padding: "10px", borderBottom: "1px solid grey" }}
+            >
+              <PreviewComponent elements={module.elements} />
+            </div>
+          );
+        })}
       </PreviewModulesWrapper>
     </PreviewPaneContainer>
   );

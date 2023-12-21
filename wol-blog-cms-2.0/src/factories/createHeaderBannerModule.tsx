@@ -1,12 +1,14 @@
 // createHeaderBannerModule.tsx
 import React from "react";
 import { HeaderBannerModule } from "../types/moduleTypes";
+import { HeaderBannerPreview } from "@/components/previewComponents";
 import { TextIcon, ImageIcon, BannerIcon } from "@/svgs";
 
 export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
   id,
   title: "Header Banner",
   icon: <BannerIcon />,
+  preview: HeaderBannerPreview,
   elements: {
     overlayText: {
       title: "Overlay Text",
