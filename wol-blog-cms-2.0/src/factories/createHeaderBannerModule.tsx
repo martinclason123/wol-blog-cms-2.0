@@ -13,7 +13,7 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
     overlayText: {
       title: "Overlay Text",
       type: "text",
-      value: "Banner Text",
+      value: "The paths we forge",
       icon: <TextIcon />,
     },
     title: {
@@ -31,13 +31,13 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
     mobileImage: {
       title: "Mobile Image",
       type: "image",
-      value: "mobile.jpg",
+      value: "m-1",
       icon: <ImageIcon />,
     },
     desktopImage: {
       title: "Desktop Image",
       type: "image",
-      value: "desktop.jpg",
+      value: "d-1",
       icon: <ImageIcon />,
     },
   },

@@ -15,10 +15,7 @@ const PreviewPane = () => {
         {modules.map((module, index) => {
           const PreviewComponent = module.preview;
           return (
-            <div
-              key={index}
-              style={{ padding: "10px", borderBottom: "1px solid grey" }}
-            >
+            <div key={index}>
               <PreviewComponent elements={module.elements} />
             </div>
           );

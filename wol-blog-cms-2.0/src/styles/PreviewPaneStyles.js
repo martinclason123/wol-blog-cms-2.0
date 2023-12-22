@@ -12,5 +12,5 @@ export const PreviewPaneContainer = styled(Container)`
 
 export const PreviewModulesWrapper = styled.div`
   margin: 0 auto;
-  width: ${(props) => (props.viewMode === "desktop" ? "100%" : "641px")};
+  width: ${(props) => (props.viewMode === "desktop" ? "1100px" : "640px")};
 `;
