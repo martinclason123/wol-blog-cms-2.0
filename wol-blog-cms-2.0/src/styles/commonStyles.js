@@ -16,9 +16,15 @@ export const Container = styled.div`
 export const ModulePreviewContainer = styled.section`
   font-size: 10px;
   container-type: inline-size;
-  @media (min-width: 1100px) {
-    // font-size: 5.729166666666667px;
-    font-size: 10px;
+  font-family: "din-2014", sans-serif;
+  font-size: ${(props) =>
+    props.viewMode === "desktop" ? "5.729166666666667px" : "10px"};
+  p {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  * {
+    padding: 0;
   }
 `;
 

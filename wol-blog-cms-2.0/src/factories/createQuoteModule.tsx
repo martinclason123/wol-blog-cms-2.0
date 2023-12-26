@@ -13,7 +13,8 @@ const createQuoteModule = (id: number): QuoteModule => ({
     quote: {
       title: "quote",
       type: "text",
-      value: "Inspiring quote",
+      value:
+        "“It all comes down to the joy,” Karen says. “I know what’s coming. Once it’s all finished it’s just beautiful, and the kids come over and sit here at night to look at it. Friends come in, they take one look, and they just start laughing. It brings joy. Christmas joy.” ",
       icon: <TextIcon />,
     },
   },

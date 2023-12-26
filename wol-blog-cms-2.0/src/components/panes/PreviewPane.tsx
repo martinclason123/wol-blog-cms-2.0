@@ -11,12 +11,14 @@ const PreviewPane = () => {
   return (
     <PreviewPaneContainer>
       <PreviewModulesWrapper viewMode={viewMode}>
-        <h2>Preview Pane</h2>
         {modules.map((module, index) => {
           const PreviewComponent = module.preview;
           return (
             <div key={index}>
-              <PreviewComponent elements={module.elements} />
+              <PreviewComponent
+                elements={module.elements}
+                viewMode={viewMode}
+              />
             </div>
           );
         })}
