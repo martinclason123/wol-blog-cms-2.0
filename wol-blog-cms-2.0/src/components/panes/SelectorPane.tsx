@@ -10,7 +10,11 @@ import {
   BannerIcon,
 } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
-import { createHeaderBannerModule, createQuoteModule } from "@/factories"; // Assuming these factories are exported
+import {
+  createHeaderBannerModule,
+  createQuoteModule,
+  createTextModule,
+} from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
   SelectorPaneHeader,
@@ -26,6 +30,7 @@ import {
   ModuleList,
   ModuleItem,
   ModuleItemText,
+  SelectorElementTitle,
 } from "@/styles/SelectorPaneStyles";
 
 const SelectorPane = () => {
@@ -53,13 +58,23 @@ const SelectorPane = () => {
   };
 
   const addModule = (type: string) => {
-    const newId = Math.max(0, ...modules.map((m) => m.id)) + 1; // Generate a new unique ID
-    const newModule =
-      type === "Header Banner"
-        ? createHeaderBannerModule(newId)
-        : createQuoteModule(newId);
+    const newId = Math.max(0, ...modules.map((m) => m.id)) + 1;
+    let newModule;
+    switch (type) {
+      case "Header Banner":
+        newModule = createHeaderBannerModule(newId);
+        break;
+      case "Quote":
+        newModule = createQuoteModule(newId);
+        break;
+      case "Text":
+        newModule = createTextModule(newId);
+        break;
+      default:
+        return; // Optional: handle unknown module type
+    }
     setModules([...modules, newModule]);
-    setAddMenuOpen(false); // Close the add menu
+    setAddMenuOpen(false);
   };
 
   const handleDelete = (moduleId: number) => {
@@ -103,7 +118,7 @@ const SelectorPane = () => {
                     isActive={selectedItemId === `${module.id}-${key}`}
                   >
                     {element.icon} {/* Render the icon here */}
-                    {element.title}
+                    <SelectorElementTitle>{element.title}</SelectorElementTitle>
                   </SelectorElement>
                 ))}
 
@@ -132,6 +147,7 @@ const SelectorPane = () => {
 
       {isAddMenuOpen && (
         <ModuleList>
+          {/* Existing module items */}
           <ModuleItem onClick={() => addModule("Header Banner")}>
             <BannerIcon />
             <ModuleItemText>Header Banner</ModuleItemText>
@@ -139,6 +155,11 @@ const SelectorPane = () => {
           <ModuleItem onClick={() => addModule("Quote")}>
             <Quote />
             <ModuleItemText>Quote</ModuleItemText>
+          </ModuleItem>
+          {/* New module item for TextModule */}
+          <ModuleItem onClick={() => addModule("Text")}>
+            <TextIcon /> {/* Assuming you have a TextIcon SVG */}
+            <ModuleItemText>Text Module</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

@@ -17,6 +17,7 @@ export const ModulePreviewContainer = styled.section`
   font-size: 10px;
   container-type: inline-size;
   font-family: "din-2014", sans-serif;
+  position: relative;
   font-size: ${(props) =>
     props.viewMode === "desktop" ? "5.729166666666667px" : "10px"};
   p {

@@ -33,6 +33,7 @@ export const SelectorPaneHeaderTitle = styled.h2`
   font-weight: 400;
   padding: 0.25em;
   border-radius: 0.5em;
+  width: fit-content;
 `;
 
 export const SelectorElementsList = styled(SelectorPaneList)`
@@ -41,7 +42,6 @@ export const SelectorElementsList = styled(SelectorPaneList)`
   padding-top: 0.75em;
 `;
 export const SelectorElement = styled.li`
-  font-size: 2.4em;
   cursor: pointer;
   padding: 0.25em;
   border-radius: 0.5em;
@@ -50,6 +50,10 @@ export const SelectorElement = styled.li`
   align-items: center;
   gap: 0.5em;
   white-space: nowrap;
+`;
+
+export const SelectorElementTitle = styled.span`
+  font-size: 2.4em;
 `;
 
 export const SelectorModuleControllers = styled.div`

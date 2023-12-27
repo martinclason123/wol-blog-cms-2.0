@@ -23,7 +23,7 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
       icon: <TextIcon />,
     },
     subtitle: {
-      title: "Subtitle=",
+      title: "Subtitle",
       type: "text",
       value: "20 Feet of Joy Beneath an 8-Foot Ceiling",
       icon: <TextIcon />,

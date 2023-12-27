@@ -1,15 +1,19 @@
 import styled from "styled-components";
 const Svg = styled.svg`
-  width: 1.5em;
+  width: 2.5em;
   flex-shrink: 0;
 `;
-const TextIcon = () => {
+const TextIcon = ({ width }) => {
   return (
     <Svg
       viewBox="0 0 20 20"
       class="Polaris-Icon__Svg_375hu"
       focusable="false"
       aria-hidden="true"
+      style={{
+        flexShrink: 0,
+        width: "2.5em",
+      }}
     >
       <path
         fill="#303030"

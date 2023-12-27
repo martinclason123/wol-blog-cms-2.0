@@ -25,4 +25,14 @@ export interface QuoteModule {
   };
 }
 
-export type Module = HeaderBannerModule | QuoteModule;
+export interface TextModule {
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+  preview: React.ComponentType<{ elements: { paragraphs: Text[] } }>;
+  elements: {
+    paragraph: Text;
+  };
+}
+
+export type Module = HeaderBannerModule | QuoteModule | TextModule;

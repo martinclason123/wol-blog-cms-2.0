@@ -1,7 +1,12 @@
+// ModuleContext.tsx
 "use client";
 import React, { createContext, useState, ReactNode } from "react";
 import { Module } from "../types/moduleTypes";
-import { createHeaderBannerModule, createQuoteModule } from "../factories";
+import {
+  createHeaderBannerModule,
+  createQuoteModule,
+  createTextModule,
+} from "../factories";
 
 type ViewMode = "mobile" | "desktop";
 
@@ -47,6 +52,7 @@ const ModulesContext = createContext<ModulesContextState>({
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   const [modules, setModules] = useState<Module[]>([
     createHeaderBannerModule(1),
+    createTextModule(3),
     createQuoteModule(2),
   ]);
 

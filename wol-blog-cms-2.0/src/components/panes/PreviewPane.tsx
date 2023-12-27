@@ -1,3 +1,4 @@
+// PreviewPane.tsx
 "use client";
 import React, { useContext } from "react";
 import { ModulesContext } from "@/context/ModulesContext";
