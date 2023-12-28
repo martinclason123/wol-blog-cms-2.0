@@ -11,7 +11,10 @@ const TextPreview = ({ elements }) => {
       {/* {elements.paragraphs.map((paragraph, index) => (
         <p key={index}>{paragraph.value}</p>
       ))} */}
-      <Text>{elements.paragraph.value}</Text>
+      {/* <Text>{elements.paragraph.value}</Text> */}
+      {elements.paragraphs.value.map((paragraph, index) => {
+        return <Text key={index}>{paragraph}</Text>;
+      })}
     </TextPreviewContainer>
   );
 };

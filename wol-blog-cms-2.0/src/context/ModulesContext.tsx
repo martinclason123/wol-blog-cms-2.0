@@ -29,6 +29,11 @@ type ModulesContextState = {
     elementKey: string,
     newValue: string
   ) => void;
+  addParagraphToTextModule: (moduleId: number, newParagraph: string) => void;
+  deleteParagraphFromTextModule: (
+    moduleId: number,
+    paragraphIndex: number
+  ) => void;
 };
 
 // Define the type for the provider props
@@ -112,6 +117,37 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     });
   };
 
+  // Function to add a paragraph to a TextModule
+  const addParagraphToTextModule = (moduleId: number, newParagraph: string) => {
+    setModules((currentModules) => {
+      return currentModules.map((module) => {
+        if (module.id === moduleId && module.title === "Text") {
+          const updatedModule = module as TextModule;
+          updatedModule.elements.paragraphs.value.push(newParagraph);
+          return updatedModule;
+        }
+        return module;
+      });
+    });
+  };
+
+  // Function to delete a paragraph from a TextModule
+  const deleteParagraphFromTextModule = (
+    moduleId: number,
+    paragraphIndex: number
+  ) => {
+    setModules((currentModules) => {
+      return currentModules.map((module) => {
+        if (module.id === moduleId && module.title === "Text") {
+          const updatedModule = module as TextModule;
+          updatedModule.elements.paragraphs.value.splice(paragraphIndex, 1);
+          return updatedModule;
+        }
+        return module;
+      });
+    });
+  };
+
   const value = {
     modules,
     setModules,
@@ -123,6 +159,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     updateModuleElement,
     viewMode,
     toggleViewMode,
+    addParagraphToTextModule,
+    deleteParagraphFromTextModule,
   };
 
   return (

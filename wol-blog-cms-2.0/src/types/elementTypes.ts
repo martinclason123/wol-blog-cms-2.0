@@ -4,7 +4,7 @@ export type ElementType = "text" | "image";
 export interface Element {
   title: string;
   type: ElementType;
-  value: string;
+  value: string | string[];
   icon: React.ReactNode;
 }
 

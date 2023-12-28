@@ -31,7 +31,7 @@ export interface TextModule {
   icon: React.ReactNode;
   preview: React.ComponentType<{ elements: { paragraphs: Text[] } }>;
   elements: {
-    paragraph: Text;
+    paragraphs: Text;
   };
 }
 
