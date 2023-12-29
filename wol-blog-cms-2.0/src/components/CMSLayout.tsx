@@ -1,17 +1,23 @@
 // In src/components/CMSLayout.tsx
+"use client";
+import styled from "styled-components";
 import React from "react";
 import { PreviewPane, EditorPane, SelectorPane } from "./panes";
 import HeaderComponent from "./HeaderComponent";
+
+export const CMSLayoutContainer = styled.div`
+  display: flex;
+`;
 
 const CMSLayout = () => {
   return (
     <div>
       <HeaderComponent />
-      <div className="cms-layout">
+      <CMSLayoutContainer>
         <SelectorPane />
         <PreviewPane />
         <EditorPane />
-      </div>
+      </CMSLayoutContainer>
     </div>
   );
 };

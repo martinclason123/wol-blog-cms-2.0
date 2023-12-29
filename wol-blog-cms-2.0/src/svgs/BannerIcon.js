@@ -16,20 +16,20 @@ const BannerIcon = ({ onClick }) => {
       <polygon
         points="315.03 175.53 400 175.53 380.08 142.99 400 113.72 315.03 113.72 315.03 175.53"
         stroke="#fff"
-        stroke-miterlimit="10"
-        stroke-width="6"
+        strokeMiterlimit="10"
+        strokeWidth="6"
       />
       <polygon
         points="84.97 175.53 0 175.53 19.92 142.99 0 113.72 84.97 113.72 84.97 175.53"
         stroke="#fff"
-        stroke-miterlimit="10"
-        stroke-width="6"
+        strokeMiterlimit="10"
+        strokeWidth="6"
       />
       <polygon
         points="200.36 201.52 76.11 201.52 55.41 132.63 200.36 132.63 345.32 132.63 324.62 201.52 200.36 201.52"
         stroke="#fff"
-        stroke-miterlimit="10"
-        stroke-width="6"
+        strokeMiterlimit="10"
+        strokeWidth="6"
       />
     </Svg>
   );

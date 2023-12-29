@@ -46,6 +46,7 @@ const SelectorPane = () => {
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   const handleSelectItem = (moduleId, elementKey) => {
+    console.log("Selecting module:", moduleId, "Element:", elementKey);
     setSelectedItemId(`${moduleId}-${elementKey}`);
   };
 
@@ -86,6 +87,27 @@ const SelectorPane = () => {
     moveModule(moduleId, direction);
   };
 
+  const addParagraphToModule = (moduleId) => {
+    const newParagraph = "New paragraph"; // Default text for new paragraph
+    setModules(
+      modules.map((module) => {
+        if (module.id === moduleId && module.title === "Text") {
+          return {
+            ...module,
+            elements: {
+              ...module.elements,
+              paragraphs: {
+                ...module.elements.paragraphs,
+                value: [...module.elements.paragraphs.value, newParagraph],
+              },
+            },
+          };
+        }
+        return module;
+      })
+    );
+  };
+
   return (
     <SelectorPaneContainer>
       <SelectorPaneList>
@@ -108,20 +130,49 @@ const SelectorPane = () => {
             </SelectorPaneHeader>
             {openedModuleIds.includes(module.id) && (
               <SelectorElementsList>
-                {Object.entries(module.elements).map(([key, element]) => (
-                  <SelectorElement
-                    key={key}
-                    onClick={() => {
-                      setSelectedModuleAndElement(module.id, key);
-                      handleSelectItem(module.id, key);
-                    }}
-                    isActive={selectedItemId === `${module.id}-${key}`}
-                  >
-                    {element.icon} {/* Render the icon here */}
-                    <SelectorElementTitle>{element.title}</SelectorElementTitle>
-                  </SelectorElement>
-                ))}
-
+                {module.title === "Text" ? (
+                  <>
+                    {module.elements.paragraphs.value.map(
+                      (paragraph, index) => (
+                        <SelectorElement
+                          key={index}
+                          onClick={() =>
+                            setSelectedModuleAndElement(
+                              module.id,
+                              `paragraph-${index}`
+                            )
+                          }
+                          isActive={
+                            selectedItemId === `${module.id}-paragraph-${index}`
+                          }
+                        >
+                          <TextIcon />
+                          <SelectorElementTitle>
+                            Paragraph {index + 1}
+                          </SelectorElementTitle>
+                        </SelectorElement>
+                      )
+                    )}
+                    <Plus onClick={() => addParagraphToModule(module.id)} />{" "}
+                    {/* Plus icon for adding new paragraph */}
+                  </>
+                ) : (
+                  Object.entries(module.elements).map(([key, element]) => (
+                    <SelectorElement
+                      key={key}
+                      onClick={() => {
+                        setSelectedModuleAndElement(module.id, key);
+                        handleSelectItem(module.id, key);
+                      }}
+                      isActive={selectedItemId === `${module.id}-${key}`}
+                    >
+                      {element.icon} {/* Render the icon here */}
+                      <SelectorElementTitle>
+                        {element.title}
+                      </SelectorElementTitle>
+                    </SelectorElement>
+                  ))
+                )}
                 <SelectorModuleControllers>
                   <SelectorModuleMovers>
                     <UpwardArrow
@@ -147,7 +198,6 @@ const SelectorPane = () => {
 
       {isAddMenuOpen && (
         <ModuleList>
-          {/* Existing module items */}
           <ModuleItem onClick={() => addModule("Header Banner")}>
             <BannerIcon />
             <ModuleItemText>Header Banner</ModuleItemText>
@@ -156,9 +206,8 @@ const SelectorPane = () => {
             <Quote />
             <ModuleItemText>Quote</ModuleItemText>
           </ModuleItem>
-          {/* New module item for TextModule */}
           <ModuleItem onClick={() => addModule("Text")}>
-            <TextIcon /> {/* Assuming you have a TextIcon SVG */}
+            <TextIcon />
             <ModuleItemText>Text Module</ModuleItemText>
           </ModuleItem>
         </ModuleList>

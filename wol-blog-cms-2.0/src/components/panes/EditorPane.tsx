@@ -1,3 +1,4 @@
+// EditorPane.tsx
 "use client";
 import React, { useContext } from "react";
 import { ModulesContext } from "@/context/ModulesContext";
@@ -14,14 +15,34 @@ const EditorPane = () => {
 
   const handleInputChange = (newValue: string) => {
     if (selectedModuleId != null && selectedElementKey) {
-      updateModuleElement(selectedModuleId, selectedElementKey, newValue);
+      const isParagraph = selectedElementKey.startsWith("paragraph-");
+      if (isParagraph) {
+        const paragraphIndex = parseInt(selectedElementKey.split("-")[1]);
+        const updatedParagraphs = [...selectedModule.elements.paragraphs.value];
+        updatedParagraphs[paragraphIndex] = newValue;
+        updateModuleElement(selectedModuleId, "paragraphs", updatedParagraphs);
+      } else {
+        updateModuleElement(selectedModuleId, selectedElementKey, newValue);
+      }
     }
   };
 
   const selectedModule = modules.find(
     (module) => module.id === selectedModuleId
   );
-  const selectedElement = selectedModule?.elements[selectedElementKey];
+
+  if (!selectedElementKey || !selectedModule) {
+    return <EditorPaneWrapper>No element selected</EditorPaneWrapper>;
+  }
+
+  const elementKey = selectedElementKey.startsWith("paragraph-")
+    ? "paragraphs"
+    : selectedElementKey.split("-")[0];
+  const selectedElement = selectedModule?.elements[elementKey];
+
+  console.log("Selected Module:", selectedModule);
+  console.log("Selected Element Key:", selectedElementKey);
+  console.log("Selected Element:", selectedElement);
 
   return (
     <EditorPaneWrapper>
@@ -30,7 +51,13 @@ const EditorPane = () => {
           <EditorElementLabel>{selectedElement.title}</EditorElementLabel>
           <EditorElementInput
             type="text"
-            value={selectedElement.value}
+            value={
+              selectedElementKey.startsWith("paragraph-")
+                ? selectedModule.elements.paragraphs.value[
+                    parseInt(selectedElementKey.split("-")[1])
+                  ]
+                : selectedElement.value
+            }
             onChange={(e) => handleInputChange(e.target.value)}
           />
         </EditorElementWrapper>

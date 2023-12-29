@@ -26,14 +26,14 @@ const Quote = ({ onClick }) => {
       <path
         d="M-.32,0h172.44v152.64c0,115.45-63.33,162.6-172.11,162.6,85.47-57.02,85.88-70.86,85.88-162.6H-.32V0Z"
         fill="#010101"
-        fill-rule="evenodd"
-        stroke-width="0"
+        fillRule="evenodd"
+        strokeWidth="0"
       />
       <path
         d="M227.88,0h172.44v152.64c0,115.45-63.32,162.6-172.11,162.6,85.49-57.02,85.89-70.86,85.89-162.6h-86.23V0Z"
         fill="#010101"
-        fill-rule="evenodd"
-        stroke-width="0"
+        fillRule="evenodd"
+        strokeWidth="0"
       />
     </Svg>
   );
