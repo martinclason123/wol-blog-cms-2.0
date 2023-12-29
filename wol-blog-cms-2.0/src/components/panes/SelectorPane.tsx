@@ -108,6 +108,28 @@ const SelectorPane = () => {
     );
   };
 
+  const deleteParagraphFromModule = (moduleId, paragraphIndex) => {
+    setModules(
+      modules.map((module) => {
+        if (module.id === moduleId && module.title === "Text") {
+          const updatedParagraphs = [...module.elements.paragraphs.value];
+          updatedParagraphs.splice(paragraphIndex, 1); // Remove the paragraph at the specified index
+          return {
+            ...module,
+            elements: {
+              ...module.elements,
+              paragraphs: {
+                ...module.elements.paragraphs,
+                value: updatedParagraphs,
+              },
+            },
+          };
+        }
+        return module;
+      })
+    );
+  };
+
   return (
     <SelectorPaneContainer>
       <SelectorPaneList>
@@ -128,6 +150,7 @@ const SelectorPane = () => {
               </SelectorTitleWrapper>
               <Chevron active={openedModuleIds.includes(module.id)} />
             </SelectorPaneHeader>
+
             {openedModuleIds.includes(module.id) && (
               <SelectorElementsList>
                 {module.title === "Text" ? (
@@ -136,12 +159,13 @@ const SelectorPane = () => {
                       (paragraph, index) => (
                         <SelectorElement
                           key={index}
-                          onClick={() =>
+                          onClick={() => {
                             setSelectedModuleAndElement(
                               module.id,
                               `paragraph-${index}`
-                            )
-                          }
+                            );
+                            handleSelectItem(module.id, `paragraph-${index}`);
+                          }}
                           isActive={
                             selectedItemId === `${module.id}-paragraph-${index}`
                           }
@@ -150,11 +174,15 @@ const SelectorPane = () => {
                           <SelectorElementTitle>
                             Paragraph {index + 1}
                           </SelectorElementTitle>
+                          <Trash
+                            onClick={() =>
+                              deleteParagraphFromModule(module.id, index)
+                            }
+                          />
                         </SelectorElement>
                       )
                     )}
-                    <Plus onClick={() => addParagraphToModule(module.id)} />{" "}
-                    {/* Plus icon for adding new paragraph */}
+                    <Plus onClick={() => addParagraphToModule(module.id)} />
                   </>
                 ) : (
                   Object.entries(module.elements).map(([key, element]) => (
@@ -166,13 +194,14 @@ const SelectorPane = () => {
                       }}
                       isActive={selectedItemId === `${module.id}-${key}`}
                     >
-                      {element.icon} {/* Render the icon here */}
+                      {element.icon}
                       <SelectorElementTitle>
                         {element.title}
                       </SelectorElementTitle>
                     </SelectorElement>
                   ))
                 )}
+
                 <SelectorModuleControllers>
                   <SelectorModuleMovers>
                     <UpwardArrow
@@ -191,6 +220,7 @@ const SelectorPane = () => {
           </li>
         ))}
       </SelectorPaneList>
+
       <SelectorAddModule onClick={() => setAddMenuOpen(!isAddMenuOpen)}>
         <Plus />
         <SelectorAddModuleText>Add Module</SelectorAddModuleText>
