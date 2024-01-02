@@ -5,7 +5,7 @@ export const PreviewPaneContainer = styled(Container)`
   width: 80%;
   border-left: 1px solid #f1f1f1;
   border-right: 1px solid #f1f1f1;
-  min-height: 100vh;
+  height: 100vh;
   overflow-y: scroll;
   padding-top: 1em;
 `;
