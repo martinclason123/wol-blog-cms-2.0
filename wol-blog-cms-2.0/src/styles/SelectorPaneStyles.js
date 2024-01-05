@@ -69,7 +69,7 @@ export const SelectorAddModule = styled.div`
   display: flex;
   gap: 0.5em;
   cursor: pointer;
-  width: 60%;
+  width: 75%;
   padding-top: 0.75em;
 `;
 
@@ -82,7 +82,7 @@ export const ModuleList = styled(SelectorPaneList)`
   padding-top: 0.75em;
   border-top: 1px solid #f1f1f1;
   margin-top: 0.75em;
-  width: 70%;
+  width: 90%;
 `;
 export const ModuleItem = styled.li`
   display: flex;

@@ -1,6 +1,6 @@
 // ModuleContext.tsx
 "use client";
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { Module } from "../types/moduleTypes";
 import {
   createHeaderBannerModule,
@@ -34,6 +34,8 @@ type ModulesContextState = {
     moduleId: number,
     paragraphIndex: number
   ) => void;
+  imageGallery: string[]; // Array of image URLs
+  uploadImage: (file: File) => Promise<void>;
 };
 
 // Define the type for the provider props
@@ -65,6 +67,45 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   const [selectedElementKey, setSelectedElementKey] = useState<string | null>(
     null
   );
+
+  const [imageGallery, setImageGallery] = useState<string[]>([]);
+
+  // Function to initialize the image gallery
+  const initializeImageGallery = async () => {
+    try {
+      const response = await fetch("/api/getGallery"); // replace with your API endpoint
+      const data = await response.json();
+
+      setImageGallery(data); // assuming the API returns an object with an 'images' array
+    } catch (error) {
+      console.error("Error loading images:", error);
+    }
+  };
+
+  // Initialize the image gallery on mount
+  useEffect(() => {
+    initializeImageGallery();
+  }, []);
+
+  // Function to handle image upload
+  const uploadImage = async (file: File) => {
+    const formData = new FormData();
+    formData.append("files", file);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      // Update the image gallery state
+      setImageGallery((prevGallery) => [...prevGallery, data.imageUrl]);
+      initializeImageGallery();
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
+    }
+  };
 
   const deleteModule = (moduleId: number) => {
     setModules(modules.filter((module) => module.id !== moduleId));
@@ -161,6 +202,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     toggleViewMode,
     addParagraphToTextModule,
     deleteParagraphFromTextModule,
+    imageGallery,
+    uploadImage,
   };
 
   return (

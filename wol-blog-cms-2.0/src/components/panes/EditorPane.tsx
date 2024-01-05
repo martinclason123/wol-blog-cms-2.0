@@ -1,6 +1,7 @@
 // EditorPane.tsx
 "use client";
 import React, { useContext } from "react";
+import { ImageSelector } from "@/components/subcomponents";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
   EditorElementWrapper,
@@ -49,17 +50,24 @@ const EditorPane = () => {
       {selectedElement && (
         <EditorElementWrapper>
           <EditorElementLabel>{selectedElement.title}</EditorElementLabel>
-          <EditorElementInput
-            type="text"
-            value={
-              selectedElementKey.startsWith("paragraph-")
-                ? selectedModule.elements.paragraphs.value[
-                    parseInt(selectedElementKey.split("-")[1])
-                  ]
-                : selectedElement.value
-            }
-            onChange={(e) => handleInputChange(e.target.value)}
-          />
+          {selectedElement.type === "image" ? (
+            <ImageSelector
+              selectedImage={selectedElement.value}
+              onSelectImage={(image) => handleInputChange(image)}
+            />
+          ) : (
+            <EditorElementInput
+              type="text"
+              value={
+                selectedElementKey.startsWith("paragraph-")
+                  ? selectedModule.elements.paragraphs.value[
+                      parseInt(selectedElementKey.split("-")[1])
+                    ]
+                  : selectedElement.value
+              }
+              onChange={(e) => handleInputChange(e.target.value)}
+            />
+          )}
         </EditorElementWrapper>
       )}
     </EditorPaneWrapper>

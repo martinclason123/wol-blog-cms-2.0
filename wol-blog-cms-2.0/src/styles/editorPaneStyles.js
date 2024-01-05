@@ -8,6 +8,9 @@ export const EditorPaneWrapper = styled(Container)`
   align-items: flex-start;
   padding-top: 1em;
   padding-left: 1em;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 20em;
 `;
 
 export const EditorElementWrapper = styled.div`
@@ -21,6 +24,7 @@ export const EditorElementLabel = styled.label`
   display: block;
 `;
 
-export const EditorElementInput = styled.input`
+export const EditorElementInput = styled.textarea`
   font-size: 2.4em;
-`
+  min-height: 10em;
+`;
