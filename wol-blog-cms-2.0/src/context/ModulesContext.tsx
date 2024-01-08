@@ -20,6 +20,8 @@ type ModulesContextState = {
   selectedElementKey: string | null;
   viewMode: ViewMode;
   toggleViewMode: () => void;
+  previewContent: ViewMode;
+  setPreviewContent: () => void;
   setSelectedModuleAndElement: (
     moduleId: number | null,
     elementKey: string | null
@@ -54,6 +56,8 @@ const ModulesContext = createContext<ModulesContextState>({
   updateModuleElement: () => {},
   viewMode: "desktop",
   toggleViewMode: () => {},
+  previewContent: "preview",
+  setPreviewContent: () => {},
 });
 
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
@@ -107,6 +111,33 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     }
   };
 
+  // Function to delete an image
+  const deleteImage = async (imageName: string) => {
+    try {
+      // save the imageName from the url as a variable
+      const queryString = `/api/delete?imageName=${encodeURIComponent(
+        imageName
+      )}`;
+      console.log("queryString", queryString);
+      const response = await fetch(
+        `/api/delete?imageName=${encodeURIComponent(imageName)}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+
+      if (data.success) {
+        // Update the image gallery to remove the deleted image
+        setImageGallery((prevGallery) =>
+          prevGallery.filter((image) => image !== imageName)
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting image:", error);
+    }
+  };
+
   const deleteModule = (moduleId: number) => {
     setModules(modules.filter((module) => module.id !== moduleId));
   };
@@ -130,6 +161,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   const toggleViewMode = () => {
     setViewMode((prevMode) => (prevMode === "desktop" ? "mobile" : "desktop"));
   };
+
+  const [previewContent, setPreviewContent] = useState<ViewMode>("preview");
 
   const setSelectedModuleAndElement = (
     moduleId: number | null,
@@ -200,10 +233,14 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     updateModuleElement,
     viewMode,
     toggleViewMode,
+    previewContent,
+    setPreviewContent,
     addParagraphToTextModule,
     deleteParagraphFromTextModule,
     imageGallery,
+    setImageGallery,
     uploadImage,
+    deleteImage,
   };
 
   return (

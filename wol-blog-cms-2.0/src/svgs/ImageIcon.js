@@ -1,15 +1,20 @@
 import styled from "styled-components";
 const Svg = styled.svg`
-  width: 1.5em;
+  background-color: ${(props) => (props.isActive ? "#ffffff" : "transparent")};
+  cursor: pointer;
+  width: ${(props) => props.width || "1.5em"};
   flex-shrink: 0;
 `;
-const ImageIcon = () => {
+const ImageIcon = ({ width, isActive, onClick }) => {
   return (
     <Svg
       viewBox="0 0 20 20"
       className="Polaris-Icon__Svg_375hu"
       focusable="false"
       aria-hidden="true"
+      width={width}
+      isActive={isActive}
+      onClick={onClick}
     >
       <path
         fill="#303030"

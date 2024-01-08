@@ -2,7 +2,7 @@ import styled from "styled-components";
 const Svg = styled.svg`
   background-color: ${(props) => (props.isActive ? "#ffffff" : "transparent")};
   cursor: pointer;
-  width: 3.5em;
+  width: ${(props) => props.width || "3.5em"};
   flex-shrink: 0;
 `;
 const MobileIcon = ({ isActive, onClick }) => {

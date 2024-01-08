@@ -1,22 +1,6 @@
 "use client";
 import styled from "styled-components";
 
-const images = [
-  "m-1",
-  "m-2",
-  "m-3",
-  "m-4",
-  "m-5",
-  "m-6",
-  "m-7",
-  "d-1",
-  "d-2",
-  "d-3",
-  "d-4",
-  "d-5",
-  "d-6",
-  "d-7",
-];
 export const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -124,7 +108,8 @@ import { ModulesContext } from "@/context/ModulesContext";
 
 const ImageSelector = ({ selectedImage, onSelectImage }) => {
   const [selectingImage, setSelectingImage] = useState(false);
-  const { uploadImage, imageGallery } = useContext(ModulesContext); // Use the context
+  const { uploadImage, imageGallery, setImageGallery, deleteImage } =
+    useContext(ModulesContext); // Use the context
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -133,45 +118,7 @@ const ImageSelector = ({ selectedImage, onSelectImage }) => {
     setSelectingImage(false);
   };
 
-  useEffect(() => {
-    console.log(imageGallery); // undefined
-  }, [imageGallery]);
-
-  console.log(imageGallery); // undefined
-
-  //   const handleFileSelect = async (event) => {
-  //     const file = event.target.files[0];
-  //     if (file) {
-  //       setUploading(true);
-  //       try {
-  //         await uploadImage(file); // Upload the image
-  //       } finally {
-  //         setUploading(false);
-  //       }
-  //       // Reset the file input
-  //       event.target.value = null;
-  //     }
-  //   };
-
-  //   const handleFileSelect = async (event) => {
-  //     console.log();
-  //     const files = event.target.files;
-  //     setUploading(true);
-  //     files.forEach(async (file) => {
-  //       if (file) {
-  //         try {
-  //           await uploadImage(file); // Upload the image
-  //         } finally {
-  //           setUploading(false);
-  //         }
-  //         //check if this is the last file
-  //         if (files[files.length - 1] === file) {
-  //           setUploading(false);
-  //           event.target.value = null;
-  //         }
-  //       }
-  //     });
-  //   };
+  useEffect(() => {}, [imageGallery]);
 
   const uploadFiles = async (files) => {
     setUploading(true);
@@ -187,6 +134,21 @@ const ImageSelector = ({ selectedImage, onSelectImage }) => {
       await uploadFiles(files);
       event.target.value = null;
     }
+  };
+
+  const handleDeleteImage = async (e, image) => {
+    e.stopPropagation(); // Prevents triggering the image selection
+    await deleteImage(image); // Delete the image
+    setImageGallery((prevGallery) =>
+      prevGallery.filter((img) => img !== image)
+    );
+  };
+
+  const handleDeleteAllImages = async () => {
+    for (const image of imageGallery) {
+      await deleteImage(image);
+    }
+    setImageGallery([]); // Clear the image gallery
   };
 
   const triggerFileInput = () => {
@@ -225,12 +187,7 @@ const ImageSelector = ({ selectedImage, onSelectImage }) => {
 
             {imageGallery.map((image) => (
               <Card key={image} onClick={() => handleImageSelect(image)}>
-                <DeleteImage
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    console.log("Delete image");
-                  }}
-                >
+                <DeleteImage onClick={(e) => handleDeleteImage(e, image)}>
                   X
                 </DeleteImage>
                 <CardImage src={`/gallery/${image}`} alt="Banner image" />
@@ -241,7 +198,7 @@ const ImageSelector = ({ selectedImage, onSelectImage }) => {
           <DeleteAllButton
             onClick={(e) => {
               e.stopPropagation();
-              console.log("Delete all images");
+              handleDeleteAllImages();
             }}
           >
             Delete All

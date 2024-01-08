@@ -1,29 +1,34 @@
 // PreviewPane.tsx
 "use client";
 import React, { useContext } from "react";
+import { Assets, Code, Uploads, Preview } from "../subcomponents";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
   PreviewPaneContainer,
   PreviewModulesWrapper,
 } from "@/styles/PreviewPaneStyles";
 const PreviewPane = () => {
-  const { modules, viewMode } = useContext(ModulesContext);
+  const { modules, viewMode, previewContent } = useContext(ModulesContext);
+
+  const ContentComponent = () => {
+    switch (previewContent) {
+      case "assets":
+        return <Assets />;
+      case "uploads":
+        return <Uploads />;
+      case "code":
+        return <Code />;
+      default:
+        return <Preview />;
+    }
+  };
 
   return (
     <PreviewPaneContainer>
       <PreviewModulesWrapper viewMode={viewMode}>
-        {modules.map((module, index) => {
-          const PreviewComponent = module.preview;
-          return (
-            <div key={index}>
-              <PreviewComponent
-                elements={module.elements}
-                viewMode={viewMode}
-              />
-            </div>
-          );
-        })}
+        <ContentComponent />
       </PreviewModulesWrapper>
+      {/* <Preview /> */}
     </PreviewPaneContainer>
   );
 };

@@ -8,3 +8,6 @@ export { default as Quote } from "./Quote.js";
 export { default as BannerIcon } from "./BannerIcon.js";
 export { default as DesktopIcon } from "./DesktopIcon.js";
 export { default as MobileIcon } from "./MobileIcon.js";
+export { default as DownloadIcon } from "./DownloadIcon.js";
+export { default as PreviewIcon } from "./PreviewIcon.js";
+export { default as CodeIcon } from "./CodeIcon.js";
