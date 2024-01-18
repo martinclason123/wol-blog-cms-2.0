@@ -19,6 +19,7 @@ export interface QuoteModule {
   id: number;
   title: string;
   icon: React.ReactNode;
+  snippet: (elements: { [key: string]: Text }) => string;
   preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
   elements: {
     quote: Text;
@@ -33,6 +34,7 @@ export interface TextModule {
   elements: {
     paragraphs: Text;
   };
+  snippet: React.ComponentType<{ elements: { paragraphs: Text[] } }>;
 }
 
 export type Module = HeaderBannerModule | QuoteModule | TextModule;

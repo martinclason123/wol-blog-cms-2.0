@@ -4,10 +4,12 @@ import React from "react";
 import { QuoteModule } from "../types/moduleTypes";
 import { QuotePreview } from "@/components/previewComponents";
 import { Quote, TextIcon } from "@/svgs";
+import { quoteSnippet } from "../snippets";
 const createQuoteModule = (id: number): QuoteModule => ({
   id,
   title: "Quote",
   icon: <Quote />,
+  snippet: quoteSnippet,
   preview: QuotePreview,
   elements: {
     quote: {

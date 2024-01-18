@@ -11,3 +11,4 @@ export { default as MobileIcon } from "./MobileIcon.js";
 export { default as DownloadIcon } from "./DownloadIcon.js";
 export { default as PreviewIcon } from "./PreviewIcon.js";
 export { default as CodeIcon } from "./CodeIcon.js";
+export { default as ZipIcon } from "./ZipIcon.js";

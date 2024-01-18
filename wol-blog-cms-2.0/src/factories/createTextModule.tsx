@@ -3,6 +3,7 @@ import React from "react";
 import { TextModule } from "../types/moduleTypes";
 import { TextPreview } from "@/components/previewComponents"; // Assuming you'll create a preview component
 import { TextIcon } from "@/svgs";
+import { TextSnippet } from "../snippets";
 
 const createTextModule = (id: number): TextModule => ({
   id,
@@ -19,6 +20,7 @@ const createTextModule = (id: number): TextModule => ({
         "In the field earlier in the day, Robbie led his pregnant wife Shelagh, parents Karen and Jon, older brother Josh, and Josh’s partner Kirk, to the two trees he’d scouted—both full, round-shaped spruces about 20 feet high. The family debated the merits of each, but in one in particular Jon saw exactly what he wanted.",
       ],
       icon: <TextIcon />,
+      snippet: <TextSnippet />,
     },
   },
 });

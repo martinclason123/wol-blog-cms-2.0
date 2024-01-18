@@ -41,10 +41,6 @@ const EditorPane = () => {
     : selectedElementKey.split("-")[0];
   const selectedElement = selectedModule?.elements[elementKey];
 
-  console.log("Selected Module:", selectedModule);
-  console.log("Selected Element Key:", selectedElementKey);
-  console.log("Selected Element:", selectedElement);
-
   return (
     <EditorPaneWrapper>
       {selectedElement && (

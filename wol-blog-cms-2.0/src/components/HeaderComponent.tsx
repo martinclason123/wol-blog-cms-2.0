@@ -44,12 +44,19 @@ const HeaderComponent = () => {
       </HeaderComponentButtons>
       <ToolBarRight>
         <HeaderComponentButtons>
-          <ImageIcon
+          {/* <ImageIcon
             width={"3.5em"}
             onClick={() => {
               handleContentChange("uploads");
             }}
             isActive={previewContent === "uploads"}
+          /> */}
+          <PreviewIcon
+            width={"3.5em"}
+            isActive={previewContent === "preview"}
+            onClick={() => {
+              handleContentChange("preview");
+            }}
           />
           <DownloadIcon
             width={"3.5em"}
@@ -58,20 +65,14 @@ const HeaderComponent = () => {
               handleContentChange("assets");
             }}
           />
-          <PreviewIcon
-            width={"3.5em"}
-            isActive={previewContent === "preview"}
-            onClick={() => {
-              handleContentChange("preview");
-            }}
-          />
-          <CodeIcon
+
+          {/* <CodeIcon
             width={"3.5em"}
             isActive={previewContent === "code"}
             onClick={() => {
               handleContentChange("code");
             }}
-          />
+          /> */}
         </HeaderComponentButtons>
       </ToolBarRight>
     </HeaderComponentContainer>

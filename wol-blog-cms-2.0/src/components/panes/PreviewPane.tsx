@@ -1,7 +1,7 @@
 // PreviewPane.tsx
 "use client";
 import React, { useContext } from "react";
-import { Assets, Code, Uploads, Preview } from "../subcomponents";
+import { Assets, Preview } from "../subcomponents";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
   PreviewPaneContainer,
@@ -14,10 +14,10 @@ const PreviewPane = () => {
     switch (previewContent) {
       case "assets":
         return <Assets />;
-      case "uploads":
-        return <Uploads />;
-      case "code":
-        return <Code />;
+      // case "uploads":
+      //   return <Uploads />;
+      // case "code":
+      //   return <Code />;
       default:
         return <Preview />;
     }
