@@ -9,6 +9,7 @@ const createTextModule = (id: number): TextModule => ({
   id,
   title: "Text",
   icon: <TextIcon />,
+  snippet: TextSnippet,
   preview: TextPreview,
   elements: {
     paragraphs: {
@@ -20,7 +21,6 @@ const createTextModule = (id: number): TextModule => ({
         "In the field earlier in the day, Robbie led his pregnant wife Shelagh, parents Karen and Jon, older brother Josh, and Josh’s partner Kirk, to the two trees he’d scouted—both full, round-shaped spruces about 20 feet high. The family debated the merits of each, but in one in particular Jon saw exactly what he wanted.",
       ],
       icon: <TextIcon />,
-      snippet: <TextSnippet />,
     },
   },
 });

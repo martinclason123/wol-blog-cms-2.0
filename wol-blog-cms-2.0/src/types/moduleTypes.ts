@@ -6,6 +6,7 @@ export interface HeaderBannerModule {
   title: string;
   icon: React.ReactNode;
   preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
+  snippet: (elements: { [key: string]: Text }) => string;
   elements: {
     overlayText: Text;
     title: Text;
@@ -30,11 +31,11 @@ export interface TextModule {
   id: number;
   title: string;
   icon: React.ReactNode;
+  snippet: (elements: { paragraphs: Text[] }) => string;
   preview: React.ComponentType<{ elements: { paragraphs: Text[] } }>;
   elements: {
     paragraphs: Text;
   };
-  snippet: React.ComponentType<{ elements: { paragraphs: Text[] } }>;
 }
 
 export type Module = HeaderBannerModule | QuoteModule | TextModule;

@@ -3,11 +3,13 @@ import React from "react";
 import { HeaderBannerModule } from "../types/moduleTypes";
 import { HeaderBannerPreview } from "@/components/previewComponents";
 import { TextIcon, ImageIcon, BannerIcon } from "@/svgs";
+import { HeaderBannerSnippet } from "../snippets";
 
 export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
   id,
   title: "Header Banner",
   icon: <BannerIcon />,
+  snippet: HeaderBannerSnippet,
   preview: HeaderBannerPreview,
   elements: {
     overlayText: {
@@ -31,13 +33,13 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
     mobileImage: {
       title: "Mobile Image",
       type: "image",
-      value: "m-1",
+      value: "",
       icon: <ImageIcon />,
     },
     desktopImage: {
       title: "Desktop Image",
       type: "image",
-      value: "d-1",
+      value: "",
       icon: <ImageIcon />,
     },
   },

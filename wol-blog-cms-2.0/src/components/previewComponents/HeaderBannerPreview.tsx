@@ -1,4 +1,3 @@
-// HeaderBannerPreview.tsx
 import React from "react";
 import {
   Picture,
@@ -20,34 +19,52 @@ import {
 const HeaderBannerPreview = ({ elements, viewMode }) => {
   const { overlayText, mobileImage, desktopImage, title, subtitle } = elements;
 
+  // Placeholder image URLs
+  const mobilePlaceholder = "/images/m-1.jpg";
+  const desktopPlaceholder = "/images/d-1.jpg";
+
   return (
     <ModulePreviewContainer viewMode={viewMode}>
       <Hero>
         <PreviewMobilePicture>
-          <Source
-            srcSet={`/images/${mobileImage.value}.avif`}
-            type="image/avif"
-          />
-          <Source
-            srcSet={`/images/${mobileImage.value}.webp`}
-            type="image/webp"
-          />
-          <Source
-            srcSet={`/images/${mobileImage.value}.jpg`}
-            type="image/jpeg"
-          />
-          <Image src={`/images/${mobileImage.value}.jpg`} alt="Banner image" />
+          {mobileImage.value !== "" ? (
+            <>
+              {/* <Source
+                srcSet={`/gallery/${mobileImage.value}.avif`}
+                type="image/avif"
+              />
+              <Source
+                srcSet={`/gallery/${mobileImage.value}.webp`}
+                type="image/webp"
+              /> */}
+              <Image
+                src={`/gallery/${mobileImage.value}`}
+                alt="Mobile banner image"
+              />
+            </>
+          ) : (
+            <Image src={mobilePlaceholder} alt="Placeholder image" />
+          )}
         </PreviewMobilePicture>
         <PreviewDesktopPicture>
-          <Source
-            srcSet={`/images/${desktopImage.value}.avif`}
-            type="image/avif"
-          />
-          <Source
-            srcSet={`/images/${desktopImage.value}.webp`}
-            type="image/webp"
-          />
-          <Image src={`/images/${desktopImage.value}.jpg`} alt="Banner image" />
+          {desktopImage.value !== "" ? (
+            <>
+              {/* <Source
+                srcSet={`/gallery/${desktopImage.value}.avif`}
+                type="image/avif"
+              />
+              <Source
+                srcSet={`/gallery/${desktopImage.value}.webp`}
+                type="image/webp"
+              /> */}
+              <Image
+                src={`/gallery/${desktopImage.value}`}
+                alt="Desktop banner image"
+              />
+            </>
+          ) : (
+            <Image src={desktopPlaceholder} alt="Placeholder image" />
+          )}
         </PreviewDesktopPicture>
         <Title>{overlayText.value}</Title>
       </Hero>

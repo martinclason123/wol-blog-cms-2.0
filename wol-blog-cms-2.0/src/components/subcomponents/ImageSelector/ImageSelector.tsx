@@ -206,10 +206,13 @@ const ImageSelector = ({ selectedImage, onSelectImage }) => {
         </>
       ) : (
         <>
-          <SelectedImage
-            src={`/images/${selectedImage}.jpg`}
-            alt="Banner image"
-          />
+          {selectedImage ? (
+            <SelectedImage
+              src={`/gallery/${selectedImage}`}
+              alt="Banner image"
+            />
+          ) : null}
+
           <ImageTitle>{selectedImage}</ImageTitle>
           <SelectedImageButton onClick={() => setSelectingImage(true)}>
             Select Image

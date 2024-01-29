@@ -1,7 +1,14 @@
 // Text.js
-const TextSnippet = ({ elements }) => {
-  console.log("elements: ", elements);
-  return <>Hello world</>;
+const TextSnippet = (elements) => {
+  return `
+      <section class="anim-on-scroll prescroll">
+       ${elements.paragraphs.value
+         .map((paragraph) => {
+           return `<p>${paragraph}</p>`;
+         })
+         .join("")}
+      </section>
+  `;
 };
 
 export default TextSnippet;
