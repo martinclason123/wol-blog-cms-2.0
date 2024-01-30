@@ -58,6 +58,7 @@ const ModulesContext = createContext<ModulesContextState>({
   toggleViewMode: () => {},
   previewContent: "preview",
   setPreviewContent: () => {},
+  fetchImageAttributes: async () => null,
 });
 
 const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
@@ -108,6 +109,26 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     } catch (error) {
       console.error("Error uploading image:", error);
       throw error;
+    }
+  };
+
+  // Function to fetch image attributes
+  const fetchImageAttributes = async (imageName: string) => {
+    try {
+      const response = await fetch("/api/attributes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageName }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching image attributes:", error);
+      return null; // or handle the error as you see fit
     }
   };
 
@@ -241,6 +262,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     setImageGallery,
     uploadImage,
     deleteImage,
+    fetchImageAttributes,
   };
 
   return (

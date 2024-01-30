@@ -43,6 +43,12 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
       icon: <ImageIcon />,
     },
   },
+  imageAttributes: {
+    mobileWidth: "",
+    mobileHeight: "",
+    desktopWidth: "",
+    desktopHeight: "",
+  },
 });
 
 export default createHeaderBannerModule;

@@ -14,6 +14,12 @@ export interface HeaderBannerModule {
     mobileImage: Image;
     desktopImage: Image;
   };
+  imageAttributes: {
+    mobileWidth: string;
+    mobileHeight: string;
+    desktopWidth: string;
+    desktopHeight: string;
+  };
 }
 
 export interface QuoteModule {
