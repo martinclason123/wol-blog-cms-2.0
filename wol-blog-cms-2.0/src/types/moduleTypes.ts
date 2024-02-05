@@ -1,5 +1,5 @@
 // moduleTypes.ts
-import { Text, Image } from "./elementTypes";
+import { Text, Image, Boolean } from "./elementTypes";
 
 export interface HeaderBannerModule {
   id: number;
@@ -13,6 +13,7 @@ export interface HeaderBannerModule {
     subtitle: Text;
     mobileImage: Image;
     desktopImage: Image;
+    altText: Text;
   };
   imageAttributes: {
     mobileWidth: string;
@@ -44,4 +45,31 @@ export interface TextModule {
   };
 }
 
-export type Module = HeaderBannerModule | QuoteModule | TextModule;
+export interface SideBySideModule {
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+  snippet: (elements: { [key: string]: Text }) => string;
+  preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
+  elements: {
+    mobileImage: Image;
+    desktopImage: Image;
+    altText: Text;
+    text: Text;
+    quote: Boolean;
+    desktopReversed: Boolean;
+    mobileReversed: Boolean;
+  };
+  imageAttributes: {
+    mobileWidth: string;
+    mobileHeight: string;
+    desktopWidth: string;
+    desktopHeight: string;
+  };
+}
+
+export type Module =
+  | HeaderBannerModule
+  | QuoteModule
+  | TextModule
+  | SideBySideModule;

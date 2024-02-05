@@ -55,3 +55,22 @@ export const PreviewDesktopPicture = styled.picture`
     display: block;
   }
 `;
+
+export const PreviewBoxContainer = styled.div`
+  @media (min-width: 640px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const PreviewBoxContainerWide = styled(PreviewBoxContainer)`
+  @media (min-width: 640px) {
+    margin: 0 8em 6em;
+  }
+`;
+export const PreviewHalfBlock = styled.div`
+  @media (min-width: 640px) {
+    width: 50%;
+  }
+`;

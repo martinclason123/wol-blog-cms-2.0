@@ -38,6 +38,7 @@ export const BlogName = styled.p`
   font-weight: 600;
   line-height: 1;
   margin: 0;
+  text-transform: uppercase;
   @container (min-width: 1100px) {
     font-size: 7em;
   }

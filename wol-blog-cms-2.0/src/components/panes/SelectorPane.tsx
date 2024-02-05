@@ -14,6 +14,7 @@ import {
   createHeaderBannerModule,
   createQuoteModule,
   createTextModule,
+  createSideBySideModule,
 } from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
@@ -70,6 +71,9 @@ const SelectorPane = () => {
         break;
       case "Text":
         newModule = createTextModule(newId);
+        break;
+      case "Side By Side":
+        newModule = createSideBySideModule(newId);
         break;
       default:
         return; // Optional: handle unknown module type
@@ -239,6 +243,10 @@ const SelectorPane = () => {
           <ModuleItem onClick={() => addModule("Text")}>
             <TextIcon />
             <ModuleItemText>Text Module</ModuleItemText>
+          </ModuleItem>
+          <ModuleItem onClick={() => addModule("Side By Side")}>
+            <TextIcon />
+            <ModuleItemText>Side By Side</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

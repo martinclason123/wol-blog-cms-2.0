@@ -2,7 +2,7 @@
 import React from "react";
 import { HeaderBannerModule } from "../types/moduleTypes";
 import { HeaderBannerPreview } from "@/components/previewComponents";
-import { TextIcon, ImageIcon, BannerIcon } from "@/svgs";
+import { TextIcon, ImageIcon, BannerIcon, Accessibility } from "@/svgs";
 import { HeaderBannerSnippet } from "../snippets";
 
 export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
@@ -41,6 +41,12 @@ export const createHeaderBannerModule = (id: number): HeaderBannerModule => ({
       type: "image",
       value: "",
       icon: <ImageIcon />,
+    },
+    altText: {
+      title: "Alt Text",
+      type: "text",
+      value: "",
+      icon: <Accessibility />,
     },
   },
   imageAttributes: {

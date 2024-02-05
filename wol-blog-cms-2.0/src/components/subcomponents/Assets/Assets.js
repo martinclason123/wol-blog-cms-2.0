@@ -2,11 +2,12 @@
 
 import { ImageIcon, CodeIcon } from "@/svgs";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Container } from "@/styles/commonStyles";
 
 import { Code, Uploads } from "../../subcomponents";
+import FilePath from "./FilePath";
 
 export const AssetsContainer = styled(Container)``;
 
@@ -24,13 +25,28 @@ export const ToggleMenu = styled.div`
   align-items: center;
 `;
 
+const AssetVariables = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 4em 0;
+`;
+
+const VariableWrapper = styled.div`
+  display: flex;
+  gap: 1em;
+  align-items: center;
+`;
+
+const VariableLabel = styled.label`
+  font-size: 1.5em;
+`;
+
+const VariableInput = styled.input`
+  padding: 0.5em;
+  font-size: 1.5em;
+`;
+
 const Assets = () => {
-  const [assets, setAssets] = useState("images");
-
-  const toggleAssets = (type) => {
-    setAssets(type);
-  };
-
   const ContentComponent = () => {
     switch (assets) {
       case "images":
@@ -40,6 +56,11 @@ const Assets = () => {
       default:
         return <Uploads />;
     }
+  };
+  const [assets, setAssets] = useState("images");
+
+  const toggleAssets = (type) => {
+    setAssets(type);
   };
 
   return (
@@ -62,6 +83,7 @@ const Assets = () => {
           />
         </ToggleMenu>
       </MenuContainer>
+      <FilePath />
       <ContentComponent />
     </AssetsContainer>
   );

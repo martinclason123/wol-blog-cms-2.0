@@ -11,14 +11,15 @@ export const PreviewModulesWrapper = styled.div`
 `;
 
 const Code = () => {
-  const { modules } = useContext(ModulesContext);
+  const { modules, imagesPath } = useContext(ModulesContext);
   const [formattedCode, setFormattedCode] = useState("");
+  console.log("imagesPath: ", imagesPath);
 
   useEffect(() => {
     let combinedCode = "<section>";
     modules.forEach((module) => {
       if (module.snippet && module.elements) {
-        combinedCode += module.snippet(module.elements);
+        combinedCode += module.snippet(module.elements, imagesPath);
       }
     });
     combinedCode += "</section>";

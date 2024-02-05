@@ -6,6 +6,7 @@ import {
   createHeaderBannerModule,
   createQuoteModule,
   createTextModule,
+  createSideBySideModule,
 } from "../factories";
 
 type ViewMode = "mobile" | "desktop";
@@ -38,6 +39,7 @@ type ModulesContextState = {
   ) => void;
   imageGallery: string[]; // Array of image URLs
   uploadImage: (file: File) => Promise<void>;
+  imagesPath: string;
 };
 
 // Define the type for the provider props
@@ -66,6 +68,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     createHeaderBannerModule(1),
     createTextModule(3),
     createQuoteModule(2),
+    createSideBySideModule(4),
   ]);
 
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
@@ -74,6 +77,9 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
   );
 
   const [imageGallery, setImageGallery] = useState<string[]>([]);
+  const [imagesPath, setImagesPath] = useState<string>(
+    "/content/seasonal-content/"
+  );
 
   // Function to initialize the image gallery
   const initializeImageGallery = async () => {
@@ -263,6 +269,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     uploadImage,
     deleteImage,
     fetchImageAttributes,
+    imagesPath,
+    setImagesPath,
   };
 
   return (
