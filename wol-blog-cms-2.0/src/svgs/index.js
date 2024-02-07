@@ -13,3 +13,4 @@ export { default as PreviewIcon } from "./PreviewIcon.js";
 export { default as CodeIcon } from "./CodeIcon.js";
 export { default as ZipIcon } from "./ZipIcon.js";
 export { default as Accessibility } from "./Accessibility.js";
+export { default as ReverseIcon } from "./ReverseIcon.js";

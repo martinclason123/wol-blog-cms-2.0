@@ -1,7 +1,13 @@
 import React from "react";
 import { SideBySideModule } from "../types/moduleTypes";
 import { SideBySidePreview } from "@/components/previewComponents";
-import { TextIcon, ImageIcon, BannerIcon, Accessibility } from "@/svgs";
+import {
+  TextIcon,
+  ImageIcon,
+  BannerIcon,
+  Accessibility,
+  ReverseIcon,
+} from "@/svgs";
 import { SideBySideSnippet } from "../snippets";
 
 export const createSideBySideModule = (id: number): SideBySideModule => ({
@@ -35,6 +41,18 @@ export const createSideBySideModule = (id: number): SideBySideModule => ({
       type: "text",
       value: "",
       icon: <Accessibility />,
+    },
+    desktopReversed: {
+      title: "Desktop Reversed",
+      type: "boolean",
+      value: false,
+      icon: <ReverseIcon />,
+    },
+    mobileReversed: {
+      title: "Mobile Reversed",
+      type: "boolean",
+      value: false,
+      icon: <ReverseIcon />,
     },
   },
   imageAttributes: {

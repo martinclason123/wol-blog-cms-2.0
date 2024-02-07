@@ -57,20 +57,53 @@ export const PreviewDesktopPicture = styled.picture`
 `;
 
 export const PreviewBoxContainer = styled.div`
-  @media (min-width: 640px) {
+  display: block;
+
+  @container (max-width: 1059px) {
+    ${(props) => props.mobileReverse && `display: flex;`}
+    ${(props) => props.mobileReverse && `flex-direction: column-reverse;`}
+  }
+  @container (min-width: 1100px) {
     display: flex;
+    ${(props) => props.desktopReverse && `flex-direction: row-reverse;`}
     align-items: center;
     justify-content: center;
   }
 `;
 
 export const PreviewBoxContainerWide = styled(PreviewBoxContainer)`
-  @media (min-width: 640px) {
+  @container (min-width: 1100px) {
     margin: 0 8em 6em;
   }
 `;
 export const PreviewHalfBlock = styled.div`
-  @media (min-width: 640px) {
+  @container (min-width: 1100px) {
     width: 50%;
+  }
+`;
+
+export const Text = styled.p`
+  font-size: 2.4em;
+  line-height: 1.1;
+  margin-bottom: 1em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  @container (min-width: 1100px) {
+    font-size: 3.5em;
+    line-height: 1.42857;
+  }
+`;
+
+export const Quote = styled.p`
+  font-size: 4.8em;
+  font-weight: 200;
+  line-height: 1.3;
+  text-align: center;
+  margin: 0.75em auto;
+  ${(props) => (props.width ? `width: ${props.width}%` : `100%`)};
+  color: #737d85;
+  @container (min-width: 1100px) {
+    font-size: 7.5em;
+    line-height: 1.06667;
   }
 `;

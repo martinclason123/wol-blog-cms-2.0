@@ -6,29 +6,33 @@ import {
   ModulePreviewContainer,
   PreviewMobilePicture,
   PreviewDesktopPicture,
-  PreviewBoxContainer,
+  Text,
   PreviewBoxContainerWide,
   PreviewHalfBlock,
+  Quote,
 } from "../../styles/commonStyles";
 
 const SideBySidePreview = ({ elements, viewMode }) => {
-  const { mobileImage, desktopImage } = elements;
+  const mobileImage = elements.mobileImage.value;
+  const desktopImage = elements.desktopImage.value;
+  const altText = elements.altText.value;
+  const text = elements.text.value;
 
   // Placeholder image URLs
-  const mobilePlaceholder = "/images/m-1.jpg";
-  const desktopPlaceholder = "/images/d-1.jpg";
+  const mobilePlaceholder = "/images/m-2.jpg";
+  const desktopPlaceholder = "/images/d-2.jpg";
 
   console.log("side by side els:", elements);
   return (
     <ModulePreviewContainer viewMode={viewMode}>
-      <PreviewBoxContainerWide className="box-container reverse margie-bot-sm wide anim-on-scroll">
+      <PreviewBoxContainerWide mobileReverse={true} desktopReverse={true}>
         <PreviewHalfBlock className="half-block">
           <PreviewMobilePicture>
-            {mobileImage.value !== "" ? (
+            {mobileImage !== "" ? (
               <>
                 <Image
-                  src={`/gallery/${mobileImage.value}`}
-                  alt="Mobile banner image"
+                  src={`/gallery/${mobileImage}`}
+                  alt={altText ? altText : "Mobile banner image"}
                 />
               </>
             ) : (
@@ -36,11 +40,11 @@ const SideBySidePreview = ({ elements, viewMode }) => {
             )}
           </PreviewMobilePicture>
           <PreviewDesktopPicture>
-            {desktopImage.value !== "" ? (
+            {desktopImage !== "" ? (
               <>
                 <Image
-                  src={`/gallery/${desktopImage.value}`}
-                  alt="Desktop banner image"
+                  src={`/gallery/${desktopImage}`}
+                  alt={altText ? altText : "Desktop banner image"}
                 />
               </>
             ) : (
@@ -49,17 +53,13 @@ const SideBySidePreview = ({ elements, viewMode }) => {
           </PreviewDesktopPicture>
         </PreviewHalfBlock>
         <PreviewHalfBlock className="half-block">
-          <p className="quote">
-            “We look for fullness,” he
-            <br className="sm-only" />
-            says. “with branches at
-            <br className="sm-only" />
-            the top that splay out side
-            <br className="sm-only" />
-            to side just so. She’s a<br className="sm-only" />
-            beautiful tree. I just need
-            <br className="sm-only" />a bigger living room.”
-          </p>
+          <Quote width={"92"}>
+            {text
+              ? text
+              : `We look for fullness,” he says. “with branches at the top that
+            splay out side to side just so. She’s a beautiful tree. I just need
+            a bigger living room.`}
+          </Quote>
         </PreviewHalfBlock>
       </PreviewBoxContainerWide>
     </ModulePreviewContainer>

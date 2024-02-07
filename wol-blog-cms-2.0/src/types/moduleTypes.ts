@@ -66,6 +66,7 @@ export interface SideBySideModule {
     desktopWidth: string;
     desktopHeight: string;
   };
+  
 }
 
 export type Module =
