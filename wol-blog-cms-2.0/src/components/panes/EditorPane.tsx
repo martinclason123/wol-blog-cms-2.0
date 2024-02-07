@@ -20,6 +20,7 @@ const EditorPane = () => {
   } = useContext(ModulesContext);
 
   const handleInputChange = async (newValue: string) => {
+    console.log("selectedModuleKey : ", selectedElementKey);
     if (selectedModuleId != null && selectedElementKey) {
       const isParagraph = selectedElementKey.startsWith("paragraph-");
       if (isParagraph) {

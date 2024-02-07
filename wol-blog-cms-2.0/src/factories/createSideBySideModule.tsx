@@ -1,3 +1,4 @@
+//createSideBySideModule.tsx
 import React from "react";
 import { SideBySideModule } from "../types/moduleTypes";
 import { SideBySidePreview } from "@/components/previewComponents";
