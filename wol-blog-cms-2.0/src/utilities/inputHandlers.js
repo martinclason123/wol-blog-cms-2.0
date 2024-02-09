@@ -4,6 +4,7 @@ export const handleParagraphInputChange = ({
   selectedModuleId,
   updateModuleElement,
   modules,
+  updateImageAttributes,
 }) => {
   // Find the selected module based on the selectedModuleId
   const selectedModule = modules.find(
@@ -19,4 +20,53 @@ export const handleParagraphInputChange = ({
 
   // Use the provided updateModuleElement function to update the module's paragraphs
   updateModuleElement(selectedModuleId, "paragraphs", updatedParagraphs);
+};
+
+export const updateModuleElementValue = ({
+  moduleId,
+  elementKey,
+  newValue,
+  updateModuleElement,
+}) => {
+  // Directly use the provided updateModuleElement function to update the element's value
+  updateModuleElement(moduleId, elementKey, newValue);
+};
+
+export const updateImageAttributes = async ({
+  selectedModuleId,
+  selectedElementKey,
+  newValue,
+  fetchImageAttributes,
+  updateModuleElement,
+}) => {
+  // Check if the element is an image
+  if (
+    selectedElementKey === "mobileImage" ||
+    selectedElementKey === "desktopImage"
+  ) {
+    try {
+      // Fetch image attributes
+      const attributes = await fetchImageAttributes(newValue);
+
+      if (attributes) {
+        const { width, height } = attributes;
+
+        // Determine the key for updating the module's image attributes
+        const imageAttributesKey =
+          selectedElementKey === "mobileImage"
+            ? "mobileAttributes"
+            : "desktopAttributes";
+
+        // Update the module's image attributes
+        updateModuleElement(selectedModuleId, imageAttributesKey, {
+          width,
+          height,
+        });
+      } else {
+        console.error("Error fetching image attributes");
+      }
+    } catch (error) {
+      console.error("Error fetching image attributes:", error);
+    }
+  }
 };

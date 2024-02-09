@@ -60,12 +60,15 @@ export const PreviewBoxContainer = styled.div`
   display: block;
 
   @container (max-width: 1059px) {
-    ${(props) => props.mobileReverse && `display: flex;`}
-    ${(props) => props.mobileReverse && `flex-direction: column-reverse;`}
+    ${(props) =>
+      props.mobileReverse === "true" ? `display: flex;` : "display: block;"}
+    ${(props) =>
+      props.mobileReverse ? `flex-direction: column-reverse;` : "color: red;"}
   }
   @container (min-width: 1100px) {
     display: flex;
-    ${(props) => props.desktopReverse && `flex-direction: row-reverse;`}
+    ${(props) =>
+      props.desktopReverse === "true" && `flex-direction: row-reverse;`}
     align-items: center;
     justify-content: center;
   }

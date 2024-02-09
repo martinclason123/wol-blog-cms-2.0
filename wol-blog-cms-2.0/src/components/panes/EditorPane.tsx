@@ -1,8 +1,12 @@
-// EditorPane.tsx
 "use client";
 import React, { useContext } from "react";
-import { ImageSelector } from "@/components/subcomponents";
+import { ImageSelector, BooleanToggle } from "@/components/subcomponents";
 import { ModulesContext } from "@/context/ModulesContext";
+import {
+  handleParagraphInputChange,
+  updateModuleElementValue,
+  updateImageAttributes,
+} from "@/utilities/inputHandlers";
 import {
   EditorElementWrapper,
   EditorElementLabel,
@@ -25,48 +29,34 @@ const EditorPane = () => {
       const isParagraph = selectedElementKey.startsWith("paragraph-");
       if (isParagraph) {
         const paragraphIndex = parseInt(selectedElementKey.split("-")[1]);
-        const updatedParagraphs = [...selectedModule.elements.paragraphs.value];
-        updatedParagraphs[paragraphIndex] = newValue;
-        updateModuleElement(selectedModuleId, "paragraphs", updatedParagraphs);
+        handleParagraphInputChange({
+          paragraphIndex,
+          newValue,
+          selectedModuleId,
+          updateModuleElement,
+          modules,
+        });
       } else {
-        // Update the element value
-        updateModuleElement(selectedModuleId, selectedElementKey, newValue);
+        // Use the general update for non-paragraph elements
+        updateModuleElementValue({
+          moduleId: selectedModuleId,
+          elementKey: selectedElementKey,
+          newValue,
+          updateModuleElement,
+        });
 
-        // Check if the updated element is an image
-        if (
-          selectedElementKey === "mobileImage" ||
-          selectedElementKey === "desktopImage"
-        ) {
-          try {
-            // Use fetchImageAttributes from context to get image attributes
-            const attributes = await fetchImageAttributes(newValue);
-
-            if (attributes) {
-              const { width, height } = attributes;
-
-              // Determine the key for updating the module's image attributes
-              const imageAttributesKey =
-                selectedElementKey === "mobileImage"
-                  ? "mobileAttributes"
-                  : "desktopAttributes";
-
-              // Update the module's image attributes
-              updateModuleElement(selectedModuleId, imageAttributesKey, {
-                width,
-                height,
-              });
-            } else {
-              // Handle case where attributes could not be fetched
-              console.error("Error fetching image attributes");
-            }
-          } catch (error) {
-            console.error("Error fetching image attributes:", error);
-            // Handle any errors here
-          }
-        }
+        // New: Extracted logic for handling image attributes
+        await updateImageAttributes({
+          selectedModuleId,
+          selectedElementKey,
+          newValue,
+          fetchImageAttributes,
+          updateModuleElement,
+        });
       }
     }
   };
+
   const selectedModule = modules.find(
     (module) => module.id === selectedModuleId
   );
@@ -80,6 +70,7 @@ const EditorPane = () => {
     : selectedElementKey.split("-")[0];
   const selectedElement = selectedModule?.elements[elementKey];
 
+  // Conditional rendering based on the element type
   return (
     <EditorPaneWrapper>
       {selectedElement && (
@@ -89,6 +80,11 @@ const EditorPane = () => {
             <ImageSelector
               selectedImage={selectedElement.value}
               onSelectImage={(image) => handleInputChange(image)}
+            />
+          ) : selectedElement.type === "boolean" ? (
+            <BooleanToggle
+              isActive={selectedElement.value === "true"} // Assuming value is a string "true" or "false"
+              onToggle={(value) => handleInputChange(value.toString())}
             />
           ) : (
             <EditorElementInput

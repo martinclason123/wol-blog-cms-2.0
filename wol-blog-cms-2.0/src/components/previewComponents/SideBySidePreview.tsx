@@ -17,15 +17,21 @@ const SideBySidePreview = ({ elements, viewMode }) => {
   const desktopImage = elements.desktopImage.value;
   const altText = elements.altText.value;
   const text = elements.text.value;
+  const desktopReversed = elements.desktopReversed.value;
+  const mobileReversed = elements.mobileReversed.value;
 
   // Placeholder image URLs
   const mobilePlaceholder = "/images/m-2.jpg";
   const desktopPlaceholder = "/images/d-2.jpg";
 
-  console.log("side by side els:", elements);
+  console.log("desktop reversed:", desktopReversed);
+  console.log("mobile reversed:", mobileReversed);
   return (
     <ModulePreviewContainer viewMode={viewMode}>
-      <PreviewBoxContainerWide mobileReverse={true} desktopReverse={true}>
+      <PreviewBoxContainerWide
+        mobileReverse={mobileReversed}
+        desktopReverse={desktopReversed}
+      >
         <PreviewHalfBlock className="half-block">
           <PreviewMobilePicture>
             {mobileImage !== "" ? (
