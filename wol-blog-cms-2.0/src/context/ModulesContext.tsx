@@ -6,7 +6,7 @@ import {
   createHeaderBannerModule,
   createQuoteModule,
   createTextModule,
-  createSideBySideModule,
+  createImageWithQuoteModule,
 } from "../factories";
 
 type ViewMode = "mobile" | "desktop";
@@ -68,7 +68,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     createHeaderBannerModule(1),
     createTextModule(3),
     createQuoteModule(2),
-    createSideBySideModule(4),
+    createImageWithQuoteModule(4),
   ]);
 
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
@@ -78,7 +78,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
 
   const [imageGallery, setImageGallery] = useState<string[]>([]);
   const [imagesPath, setImagesPath] = useState<string>(
-    "/content/seasonal-content/"
+    "/content/seasonal-content/blog/"
   );
 
   // Function to initialize the image gallery

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container } from "./commonStyles";
 
 export const EditorPaneWrapper = styled(Container)`
-  width: 20%;
+  width: 22%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,6 +17,7 @@ export const EditorElementWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+  width: 100%;
 `;
 
 export const EditorElementLabel = styled.label`

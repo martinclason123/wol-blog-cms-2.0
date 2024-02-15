@@ -1,22 +1,25 @@
-//createSideBySideModule.tsx
+//createImageWithQuoteModule.tsx
 import React from "react";
-import { SideBySideModule } from "../types/moduleTypes";
-import { SideBySidePreview } from "@/components/previewComponents";
+import { ImageWithQuoteModule } from "../types/moduleTypes";
+import { ImageWithQuotePreview } from "@/components/previewComponents";
 import {
   TextIcon,
   ImageIcon,
   BannerIcon,
   Accessibility,
   ReverseIcon,
+  ImageWithQuoteIcon,
 } from "@/svgs";
-import { SideBySideSnippet } from "../snippets";
+import { ImageWithQuoteSnippet } from "../snippets";
 
-export const createSideBySideModule = (id: number): SideBySideModule => ({
+export const createImageWithQuoteModule = (
+  id: number
+): ImageWithQuoteModule => ({
   id,
-  title: "Side By Side",
-  icon: <BannerIcon />,
-  snippet: SideBySideSnippet,
-  preview: SideBySidePreview,
+  title: "Image With Quote",
+  icon: <ImageWithQuoteIcon />,
+  snippet: ImageWithQuoteSnippet,
+  preview: ImageWithQuotePreview,
   elements: {
     text: {
       title: "Text",
@@ -44,13 +47,13 @@ export const createSideBySideModule = (id: number): SideBySideModule => ({
       icon: <Accessibility />,
     },
     desktopReversed: {
-      title: "Desktop Reversed",
+      title: "Desktop Layout",
       type: "boolean",
       value: false,
       icon: <ReverseIcon />,
     },
     mobileReversed: {
-      title: "Mobile Reversed",
+      title: "Mobile Layout",
       type: "boolean",
       value: false,
       icon: <ReverseIcon />,
@@ -62,6 +65,7 @@ export const createSideBySideModule = (id: number): SideBySideModule => ({
     desktopWidth: "",
     desktopHeight: "",
   },
+  booleanMessage: "Reverse layout",
 });
 
-export default createSideBySideModule;
+export default createImageWithQuoteModule;

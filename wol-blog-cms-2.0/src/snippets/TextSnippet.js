@@ -1,13 +1,17 @@
 // Text.js
 const TextSnippet = (elements) => {
   return `
-      <section class="anim-on-scroll prescroll">
+
+    <!-- Text -->
+
+      <section class="anim-on-scroll prescroll text">
        ${elements.paragraphs.value
          .map((paragraph) => {
-           return `<p>${paragraph}</p>`;
+           return `<p class="text__paragraph">${paragraph}</p>`;
          })
          .join("")}
       </section>
+
   `;
 };
 

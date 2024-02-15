@@ -1,8 +1,11 @@
 const quoteSnippet = (elements) => {
   if (elements && elements.quote && elements.quote.value) {
     return `
-        <section class="anim-on-scroll margie-bot-lg anim-on-scroll">
-          <p>${elements.quote.value}</p>
+
+        <!-- Quote -->
+
+        <section class="anim-on-scroll quote">
+          <p class="quote__paragraph">${elements.quote.value}</p>
         </section>
       `;
   }

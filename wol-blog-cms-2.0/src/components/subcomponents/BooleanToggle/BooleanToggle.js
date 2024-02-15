@@ -1,6 +1,16 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+const ToggleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  width: 100%;
+`;
+
+const ToggleMessage = styled.span`
+  font-size: 1.6em;
+`;
 const Toggle = styled.div`
   display: inline-block;
   width: 50px; // or any size you want
@@ -24,15 +34,18 @@ const ToggleIndicator = styled.div`
   transition: left 0.2s;
 `;
 
-const BooleanToggle = ({ isActive, onToggle }) => {
+const BooleanToggle = ({ isActive, onToggle, message }) => {
   const handleClick = () => {
     onToggle(!isActive);
   };
 
   return (
-    <Toggle isActive={isActive} onClick={handleClick}>
-      <ToggleIndicator isActive={isActive} />
-    </Toggle>
+    <ToggleContainer>
+      <ToggleMessage>{message}</ToggleMessage>
+      <Toggle isActive={isActive} onClick={handleClick}>
+        <ToggleIndicator isActive={isActive} />
+      </Toggle>
+    </ToggleContainer>
   );
 };
 

@@ -8,13 +8,14 @@ import {
   TextIcon,
   Quote,
   BannerIcon,
+  ImageWithQuoteIcon,
 } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
   createHeaderBannerModule,
   createQuoteModule,
   createTextModule,
-  createSideBySideModule,
+  createImageWithQuoteModule,
 } from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
@@ -72,8 +73,8 @@ const SelectorPane = () => {
       case "Text":
         newModule = createTextModule(newId);
         break;
-      case "Side By Side":
-        newModule = createSideBySideModule(newId);
+      case "Image With Quote":
+        newModule = createImageWithQuoteModule(newId);
         break;
       default:
         return; // Optional: handle unknown module type
@@ -244,9 +245,9 @@ const SelectorPane = () => {
             <TextIcon />
             <ModuleItemText>Text Module</ModuleItemText>
           </ModuleItem>
-          <ModuleItem onClick={() => addModule("Side By Side")}>
-            <TextIcon />
-            <ModuleItemText>Side By Side</ModuleItemText>
+          <ModuleItem onClick={() => addModule("Image With Quote")}>
+            <ImageWithQuoteIcon />
+            <ModuleItemText>Image With Quote</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

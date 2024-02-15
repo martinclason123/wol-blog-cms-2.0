@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container } from "./commonStyles";
 
 export const SelectorPaneContainer = styled(Container)`
-  width: 20%;
+  width: 22%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

@@ -85,6 +85,7 @@ const EditorPane = () => {
             <BooleanToggle
               isActive={selectedElement.value === "true"} // Assuming value is a string "true" or "false"
               onToggle={(value) => handleInputChange(value.toString())}
+              message={selectedModule.booleanMessage}
             />
           ) : (
             <EditorElementInput

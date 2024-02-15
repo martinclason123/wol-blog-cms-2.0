@@ -45,7 +45,7 @@ export interface TextModule {
   };
 }
 
-export interface SideBySideModule {
+export interface ImageWithQuoteModule {
   id: number;
   title: string;
   icon: React.ReactNode;
@@ -66,11 +66,11 @@ export interface SideBySideModule {
     desktopWidth: string;
     desktopHeight: string;
   };
-  
+  booleanMessage: string;
 }
 
 export type Module =
   | HeaderBannerModule
   | QuoteModule
   | TextModule
-  | SideBySideModule;
+  | ImageWithQuoteModule;
