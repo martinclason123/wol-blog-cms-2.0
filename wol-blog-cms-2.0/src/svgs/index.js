@@ -15,3 +15,4 @@ export { default as ZipIcon } from "./ZipIcon.js";
 export { default as Accessibility } from "./Accessibility.js";
 export { default as ReverseIcon } from "./ReverseIcon.js";
 export { default as ImageWithQuoteIcon } from "./ImageWithQuoteIcon.js";
+export { default as ExpandIcon } from "./ExpandIcon.js";

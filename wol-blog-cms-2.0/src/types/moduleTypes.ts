@@ -69,6 +69,27 @@ export interface ImageWithQuoteModule {
   booleanMessage: string;
 }
 
+export interface ImageModule {
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+  snippet: (elements: { [key: string]: Text }) => string;
+  preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
+  elements: {
+    mobileImage: Image;
+    desktopImage: Image;
+    altText: Text;
+    fullWidth: Boolean;
+  };
+  imageAttributes: {
+    mobileWidth: string;
+    mobileHeight: string;
+    desktopWidth: string;
+    desktopHeight: string;
+  };
+  booleanMessage: string;
+}
+
 export type Module =
   | HeaderBannerModule
   | QuoteModule

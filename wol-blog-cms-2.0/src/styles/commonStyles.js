@@ -64,6 +64,7 @@ export const PreviewBoxContainer = styled.div`
       props.mobileReverse === "true" ? `display: flex;` : "display: block;"}
     ${(props) =>
       props.mobileReverse ? `flex-direction: column-reverse;` : "color: red;"}
+      ${(props) => props.fullWidth && `margin: 3em 1em;`}
   }
   @container (min-width: 1100px) {
     display: flex;

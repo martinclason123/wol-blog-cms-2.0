@@ -9,6 +9,7 @@ import {
   Quote,
   BannerIcon,
   ImageWithQuoteIcon,
+  ImageIcon,
 } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
@@ -16,6 +17,7 @@ import {
   createQuoteModule,
   createTextModule,
   createImageWithQuoteModule,
+  createImageModule,
 } from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
@@ -75,6 +77,9 @@ const SelectorPane = () => {
         break;
       case "Image With Quote":
         newModule = createImageWithQuoteModule(newId);
+        break;
+      case "Image":
+        newModule = createImageModule(newId);
         break;
       default:
         return; // Optional: handle unknown module type
@@ -248,6 +253,10 @@ const SelectorPane = () => {
           <ModuleItem onClick={() => addModule("Image With Quote")}>
             <ImageWithQuoteIcon />
             <ModuleItemText>Image With Quote</ModuleItemText>
+          </ModuleItem>
+          <ModuleItem onClick={() => addModule("Image")}>
+            <ImageIcon />
+            <ModuleItemText>Image</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

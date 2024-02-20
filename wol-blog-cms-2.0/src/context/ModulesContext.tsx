@@ -7,6 +7,7 @@ import {
   createQuoteModule,
   createTextModule,
   createImageWithQuoteModule,
+  createImageModule,
 } from "../factories";
 
 type ViewMode = "mobile" | "desktop";
@@ -69,6 +70,7 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     createTextModule(3),
     createQuoteModule(2),
     createImageWithQuoteModule(4),
+    createImageModule(5),
   ]);
 
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);
