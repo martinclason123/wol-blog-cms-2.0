@@ -4,21 +4,21 @@ import {
   ModulePreviewContainer,
   PreviewMobilePicture,
   PreviewDesktopPicture,
-  PreviewBoxContainerWide,
+  PreviewBoxContainer,
 } from "../../styles/commonStyles";
 
 const ImagePreview = ({ elements, viewMode }) => {
   const mobileImage = elements.mobileImage.value;
   const desktopImage = elements.desktopImage.value;
   const altText = elements.altText.value;
-  const fullWidth = elements.fullWidth.value;
+  const imageWidth = elements.imageWidth.value;
   // Placeholder image URLs
   const mobilePlaceholder = "/images/m-6.jpg";
   const desktopPlaceholder = "/images/d-6.jpg";
 
   return (
     <ModulePreviewContainer viewMode={viewMode}>
-      <PreviewBoxContainerWide fullWidth>
+      <PreviewBoxContainer imageWidth={imageWidth}>
         <PreviewMobilePicture>
           {mobileImage !== "" ? (
             <>
@@ -43,7 +43,7 @@ const ImagePreview = ({ elements, viewMode }) => {
             <Image src={desktopPlaceholder} alt="Placeholder image" />
           )}
         </PreviewDesktopPicture>
-      </PreviewBoxContainerWide>
+      </PreviewBoxContainer>
     </ModulePreviewContainer>
   );
 };

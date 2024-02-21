@@ -59,12 +59,23 @@ export const PreviewDesktopPicture = styled.picture`
 export const PreviewBoxContainer = styled.div`
   display: block;
 
+  ${(props) => {
+    switch (props.imageWidth) {
+      case "Wide":
+        return `margin: 0 5em 3em 5em;`;
+      case "Very wide":
+        return `margin: 3em 1em;`;
+      case "Full-width":
+        return `margin: 0 0 3em 0;`;
+      default:
+        return `margin: 0 5em 3em 5em;`;
+    }
+  }}
   @container (max-width: 1059px) {
     ${(props) =>
       props.mobileReverse === "true" ? `display: flex;` : "display: block;"}
     ${(props) =>
       props.mobileReverse ? `flex-direction: column-reverse;` : "color: red;"}
-      ${(props) => props.fullWidth && `margin: 3em 1em;`}
   }
   @container (min-width: 1100px) {
     display: flex;
@@ -72,6 +83,18 @@ export const PreviewBoxContainer = styled.div`
       props.desktopReverse === "true" && `flex-direction: row-reverse;`}
     align-items: center;
     justify-content: center;
+    ${(props) => {
+      switch (props.imageWidth) {
+        case "Wide":
+          return `margin: 0 8em 6em;`;
+        case "Very wide":
+          return `margin: 0 8em 6em;`;
+        case "Full-width":
+          return `margin: 0 0 6em 0;`;
+        default:
+          return `margin: 0 23em;`;
+      }
+    }}
   }
 `;
 

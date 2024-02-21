@@ -19,3 +19,7 @@ export interface Image extends Element {
 export interface Boolean extends Element {
   type: "boolean";
 }
+
+export interface Selector extends Element {
+  type: "selector";
+}

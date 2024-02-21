@@ -30,11 +30,12 @@ export const createImageModule = (id: number): ImageModule => ({
       value: "",
       icon: <Accessibility />,
     },
-    fullWidth: {
+    imageWidth: {
       title: "Image Width",
-      type: "boolean",
-      value: false,
+      type: "selector",
+      value: "",
       icon: <ExpandIcon />,
+      options: ["Standard", "Wide", "Full Width"],
     },
   },
   imageAttributes: {
@@ -43,7 +44,6 @@ export const createImageModule = (id: number): ImageModule => ({
     desktopWidth: "",
     desktopHeight: "",
   },
-  booleanMessage: "Full width",
 });
 
 export default createImageModule;

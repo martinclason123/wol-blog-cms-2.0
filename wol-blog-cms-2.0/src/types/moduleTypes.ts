@@ -1,5 +1,5 @@
 // moduleTypes.ts
-import { Text, Image, Boolean } from "./elementTypes";
+import { Text, Image, Boolean, Selector } from "./elementTypes";
 
 export interface HeaderBannerModule {
   id: number;
@@ -79,7 +79,8 @@ export interface ImageModule {
     mobileImage: Image;
     desktopImage: Image;
     altText: Text;
-    fullWidth: Boolean;
+    imageWidth: Selector;
+    options: string[];
   };
   imageAttributes: {
     mobileWidth: string;
@@ -87,7 +88,6 @@ export interface ImageModule {
     desktopWidth: string;
     desktopHeight: string;
   };
-  booleanMessage: string;
 }
 
 export type Module =
