@@ -74,8 +74,7 @@ export const PreviewBoxContainer = styled.div`
   @container (max-width: 1059px) {
     ${(props) =>
       props.mobileReverse === "true" ? `display: flex;` : "display: block;"}
-    ${(props) =>
-      props.mobileReverse ? `flex-direction: column-reverse;` : "color: red;"}
+    ${(props) => (props.mobileReverse ? `flex-direction: column-reverse;` : "")}
   }
   @container (min-width: 1100px) {
     display: flex;
@@ -107,6 +106,21 @@ export const PreviewHalfBlock = styled.div`
   @container (min-width: 1100px) {
     width: 50%;
   }
+
+  @container (max-width: 1059px) {
+    p:first-of-type {
+      ${(props) =>
+        props.mobileReverse === "true" ? `margin-top: 0em` : "margin-top: 1em"}
+    }
+  }
+
+  @container (min-width: 1100px) {
+    p {
+      ${(props) =>
+        props.desktopReverse === "true"
+          ? `margin-right: 2em`
+          : "margin-left: 2em"}
+    }
 `;
 
 export const Text = styled.p`

@@ -9,7 +9,9 @@ import {
   Quote,
   BannerIcon,
   ImageWithQuoteIcon,
+  ImageWithTextIcon,
   ImageIcon,
+  YouTubeIcon,
 } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
@@ -17,7 +19,9 @@ import {
   createQuoteModule,
   createTextModule,
   createImageWithQuoteModule,
+  createImageWithTextModule,
   createImageModule,
+  createYouTubeVideoModule,
 } from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
@@ -78,8 +82,14 @@ const SelectorPane = () => {
       case "Image With Quote":
         newModule = createImageWithQuoteModule(newId);
         break;
+      case "Image With Text":
+        newModule = createImageWithTextModule(newId);
+        break;
       case "Image":
         newModule = createImageModule(newId);
+        break;
+      case "YouTube Video":
+        newModule = createYouTubeVideoModule(newId);
         break;
       default:
         return; // Optional: handle unknown module type
@@ -101,7 +111,7 @@ const SelectorPane = () => {
     const newParagraph = "New paragraph"; // Default text for new paragraph
     setModules(
       modules.map((module) => {
-        if (module.id === moduleId && module.title === "Text") {
+        if (module.id === moduleId && "paragraphs" in module.elements) {
           return {
             ...module,
             elements: {
@@ -121,7 +131,7 @@ const SelectorPane = () => {
   const deleteParagraphFromModule = (moduleId, paragraphIndex) => {
     setModules(
       modules.map((module) => {
-        if (module.id === moduleId && module.title === "Text") {
+        if (module.id === moduleId && "paragraphs" in module.elements) {
           const updatedParagraphs = [...module.elements.paragraphs.value];
           updatedParagraphs.splice(paragraphIndex, 1); // Remove the paragraph at the specified index
           return {
@@ -163,12 +173,12 @@ const SelectorPane = () => {
 
             {openedModuleIds.includes(module.id) && (
               <SelectorElementsList>
-                {module.title === "Text" ? (
+                {"paragraphs" in module.elements && (
                   <>
                     {module.elements.paragraphs.value.map(
                       (paragraph, index) => (
                         <SelectorElement
-                          key={index}
+                          key={`paragraph-${index}`}
                           onClick={() => {
                             setSelectedModuleAndElement(
                               module.id,
@@ -194,22 +204,25 @@ const SelectorPane = () => {
                     )}
                     <Plus onClick={() => addParagraphToModule(module.id)} />
                   </>
-                ) : (
-                  Object.entries(module.elements).map(([key, element]) => (
-                    <SelectorElement
-                      key={key}
-                      onClick={() => {
-                        setSelectedModuleAndElement(module.id, key);
-                        handleSelectItem(module.id, key);
-                      }}
-                      isActive={selectedItemId === `${module.id}-${key}`}
-                    >
-                      {element.icon}
-                      <SelectorElementTitle>
-                        {element.title}
-                      </SelectorElementTitle>
-                    </SelectorElement>
-                  ))
+                )}
+
+                {Object.entries(module.elements).map(
+                  ([key, element]) =>
+                    key !== "paragraphs" && ( // Exclude paragraphs if they have been rendered above
+                      <SelectorElement
+                        key={key}
+                        onClick={() => {
+                          setSelectedModuleAndElement(module.id, key);
+                          handleSelectItem(module.id, key);
+                        }}
+                        isActive={selectedItemId === `${module.id}-${key}`}
+                      >
+                        {element.icon}
+                        <SelectorElementTitle>
+                          {element.title}
+                        </SelectorElementTitle>
+                      </SelectorElement>
+                    )
                 )}
 
                 <SelectorModuleControllers>
@@ -254,9 +267,17 @@ const SelectorPane = () => {
             <ImageWithQuoteIcon />
             <ModuleItemText>Image With Quote</ModuleItemText>
           </ModuleItem>
+          <ModuleItem onClick={() => addModule("Image With Text")}>
+            <ImageWithTextIcon />
+            <ModuleItemText>Image With Text</ModuleItemText>
+          </ModuleItem>
           <ModuleItem onClick={() => addModule("Image")}>
             <ImageIcon />
             <ModuleItemText>Image</ModuleItemText>
+          </ModuleItem>
+          <ModuleItem onClick={() => addModule("YouTube Video")}>
+            <YouTubeIcon />
+            <ModuleItemText>YouTube Video</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

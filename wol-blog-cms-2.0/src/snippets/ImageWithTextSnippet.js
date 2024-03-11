@@ -1,5 +1,5 @@
-const ImageWithQuoteSnippet = (elements, imagesPath) => {
-  console.log("ImageWithQuoteSnippet", elements, imagesPath);
+const ImageWithTextSnippet = (elements, imagesPath) => {
+  console.log("ImageWithTextSnippet", elements, imagesPath);
   //   image variables
   const altText = elements.altText?.value || "";
   const desktopHeight = elements.desktopAttributes?.value?.height || "";
@@ -26,9 +26,9 @@ const ImageWithQuoteSnippet = (elements, imagesPath) => {
   }
 
   // text variables
-  const quote = elements.text.value || "";
+  const paragraphs = elements.paragraphs.value;
   return `
-  <!-- Image with quote -->
+  <!-- Image with text -->
 
   <section class="box-container wide anim-on-scroll ${modifierClasses}">
     <div class="half-block">
@@ -77,13 +77,19 @@ const ImageWithQuoteSnippet = (elements, imagesPath) => {
       </picture>
     </div>
     <div class="half-block">
-        <p class="quote__paragraph">
-          ${quote}
-        </p>
+        ${
+          paragraphs
+            ? paragraphs
+                .map((p) => {
+                  return `<p class="text__paragraph">${p}</p>`;
+                })
+                .join("")
+            : ""
+        }
     </div>
 </section>
 
   `;
 };
 
-export default ImageWithQuoteSnippet;
+export default ImageWithTextSnippet;

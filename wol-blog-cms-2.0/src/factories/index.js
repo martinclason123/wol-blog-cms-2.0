@@ -5,3 +5,5 @@ export { default as createHeaderBannerModule } from "./createHeaderBannerModule"
 export { default as createTextModule } from "./createTextModule";
 export { default as createImageWithQuoteModule } from "./createImageWithQuoteModule";
 export { default as createImageModule } from "./createImageModule";
+export { default as createImageWithTextModule } from "./createImageWithTextModule";
+export { default as createYouTubeVideoModule } from "./createYouTubeVideoModule";

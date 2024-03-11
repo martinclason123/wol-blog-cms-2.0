@@ -1,19 +1,22 @@
 import React from "react";
 import {
+  Picture,
+  Source,
   Image,
   ModulePreviewContainer,
   PreviewMobilePicture,
   PreviewDesktopPicture,
+  Text,
   PreviewBoxContainerWide,
   PreviewHalfBlock,
   Quote,
 } from "../../styles/commonStyles";
 
-const SideBySidePreview = ({ elements, viewMode }) => {
+const ImageWithTextPreview = ({ elements, viewMode }) => {
   const mobileImage = elements.mobileImage.value;
   const desktopImage = elements.desktopImage.value;
   const altText = elements.altText.value;
-  const text = elements.text.value;
+  const paragraphs = elements.paragraphs.value;
   const desktopReversed = elements.desktopReversed.value;
   const mobileReversed = elements.mobileReversed.value;
 
@@ -55,18 +58,18 @@ const SideBySidePreview = ({ elements, viewMode }) => {
             )}
           </PreviewDesktopPicture>
         </PreviewHalfBlock>
-        <PreviewHalfBlock className="half-block">
-          <Quote width={"92"}>
-            {text
-              ? text
-              : `We look for fullness,” he says. “with branches at the top that
-            splay out side to side just so. She’s a beautiful tree. I just need
-            a bigger living room.`}
-          </Quote>
+        <PreviewHalfBlock
+          className="half-block"
+          mobileReverse={mobileReversed}
+          desktopReverse={desktopReversed}
+        >
+          {paragraphs.map((paragraph, index) => {
+            return <Text key={index}>{paragraph}</Text>;
+          })}
         </PreviewHalfBlock>
       </PreviewBoxContainerWide>
     </ModulePreviewContainer>
   );
 };
 
-export default SideBySidePreview;
+export default ImageWithTextPreview;

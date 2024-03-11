@@ -1,6 +1,5 @@
-const ImageWithQuoteSnippet = (elements, imagesPath) => {
-  console.log("ImageWithQuoteSnippet", elements, imagesPath);
-  //   image variables
+const YouTubeVideoSnippet = (elements, imagesPath) => {
+  console.log("YouTubeVideoSnippet", elements);
   const altText = elements.altText?.value || "";
   const desktopHeight = elements.desktopAttributes?.value?.height || "";
   const mobileHeight = elements.mobileAttributes?.value?.height || "";
@@ -8,30 +7,14 @@ const ImageWithQuoteSnippet = (elements, imagesPath) => {
   const mobileWidth = elements.mobileAttributes?.value?.width || "";
   const desktopImage = elements.desktopImage?.value?.split(".")[0];
   const mobileImage = elements.mobileImage?.value?.split(".")[0];
+  const link = elements.link?.value || "";
 
-  //layout variables
-  let mobileReversed = elements.mobileReversed?.value || false;
-  let desktopReversed = elements.desktopReversed?.value || false;
-  let modifierClasses = "";
-
-  // convert to boolean
-  mobileReversed = mobileReversed === "true";
-  desktopReversed = desktopReversed === "true";
-
-  if (mobileReversed) {
-    modifierClasses += " box-container--mobile-reverse";
-  }
-  if (desktopReversed) {
-    modifierClasses += " box-container--desktop-reverse";
-  }
-
-  // text variables
-  const quote = elements.text.value || "";
   return `
-  <!-- Image with quote -->
-
-  <section class="box-container wide anim-on-scroll ${modifierClasses}">
-    <div class="half-block">
+  
+    <!-- YouTube Video -->
+  
+    <section class="wide section--very-wide anim-on-scroll">
+    <a href="https://youtu.be/${link}" data-youtube="${link}">
       <picture>
         <source
           srcset="${imagesPath}${mobileImage}.avif?$staticlink$"
@@ -75,15 +58,35 @@ const ImageWithQuoteSnippet = (elements, imagesPath) => {
           height="${desktopHeight}"
         />
       </picture>
-    </div>
-    <div class="half-block">
-        <p class="quote__paragraph">
-          ${quote}
-        </p>
-    </div>
-</section>
+     </a>
+    </section>
 
-  `;
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="css/youtube-modal.css?$staticlink$"
+    />
+
+    <!-- Youtube Modal -->
+    
+    <script type="text/template" id="youtube-modal-template">
+        <div class="ag-youtube-modal">
+        <div class="ag-youtube-modal__bg" close-modal></div>
+        <button class="ag-youtube-modal__close" close-modal></button>
+        <div class="ag-youtube-modal__content-outer">
+            <div class="ag-youtube-modal__content">
+            <iframe
+                class="ag-youtube-modal__iframe"
+                frameborder="0"
+                autoplay
+                allowfullscreen
+            ></iframe>
+            </div>
+        </div>
+        </div>
+    </script>
+    <script type="text/javascript" src="js/youtube-modal.js?$staticlink$"></script>
+    `;
 };
 
-export default ImageWithQuoteSnippet;
+export default YouTubeVideoSnippet;

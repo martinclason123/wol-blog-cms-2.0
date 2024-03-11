@@ -7,7 +7,9 @@ import {
   createQuoteModule,
   createTextModule,
   createImageWithQuoteModule,
+  createImageWithTextModule,
   createImageModule,
+  createYouTubeVideoModule,
 } from "../factories";
 
 type ViewMode = "mobile" | "desktop";
@@ -71,6 +73,8 @@ const ModulesProvider: React.FC<ModulesProviderProps> = ({ children }) => {
     createQuoteModule(2),
     createImageWithQuoteModule(4),
     createImageModule(5),
+    createImageWithTextModule(6),
+    createYouTubeVideoModule(7),
   ]);
 
   const [selectedModuleId, setSelectedModuleId] = useState<number | null>(null);

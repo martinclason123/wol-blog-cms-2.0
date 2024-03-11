@@ -16,3 +16,6 @@ export { default as Accessibility } from "./Accessibility.js";
 export { default as ReverseIcon } from "./ReverseIcon.js";
 export { default as ImageWithQuoteIcon } from "./ImageWithQuoteIcon.js";
 export { default as ExpandIcon } from "./ExpandIcon.js";
+export { default as ImageWithTextIcon } from "./ImageWithTextIcon.js";
+export { default as YouTubeIcon } from "./YouTubeIcon.js";
+export { default as LinkIcon } from "./LinkIcon.js";
