@@ -148,3 +148,36 @@ export const Quote = styled.p`
     line-height: 1.06667;
   }
 `;
+
+export const ProductsBox = styled.div`
+  margin: 0 10em;
+
+  @container (min-width: 1100px) {
+    display: flex;
+    margin: 8em 0em 2em;
+  }
+`;
+
+export const Product = styled.div`
+  @container (min-width: 1100px) {
+    width: 25%;
+  }
+`;
+
+export const ProductImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+export const ProductCTA = styled.p`
+  font-size: 3.6em;
+  font-weight: 600;
+  text-align: center;
+  margin: 1em 0;
+  color: #a41e21;
+
+  @container (min-width: 1100px) {
+    font-size: 2.2em;
+  }
+`;

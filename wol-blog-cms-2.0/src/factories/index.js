@@ -7,3 +7,4 @@ export { default as createImageWithQuoteModule } from "./createImageWithQuoteMod
 export { default as createImageModule } from "./createImageModule";
 export { default as createImageWithTextModule } from "./createImageWithTextModule";
 export { default as createYouTubeVideoModule } from "./createYouTubeVideoModule";
+export { default as createProductsModule } from "./createProductsModule";

@@ -12,6 +12,7 @@ import {
   ImageWithTextIcon,
   ImageIcon,
   YouTubeIcon,
+  ProductsIcon,
 } from "../../svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 import {
@@ -22,6 +23,7 @@ import {
   createImageWithTextModule,
   createImageModule,
   createYouTubeVideoModule,
+  createProductsModule,
 } from "@/factories"; // Assuming these factories are exported
 import {
   SelectorPaneContainer,
@@ -90,6 +92,9 @@ const SelectorPane = () => {
         break;
       case "YouTube Video":
         newModule = createYouTubeVideoModule(newId);
+        break;
+      case "Products":
+        newModule = createProductsModule(newId);
         break;
       default:
         return; // Optional: handle unknown module type
@@ -278,6 +283,10 @@ const SelectorPane = () => {
           <ModuleItem onClick={() => addModule("YouTube Video")}>
             <YouTubeIcon />
             <ModuleItemText>YouTube Video</ModuleItemText>
+          </ModuleItem>
+          <ModuleItem onClick={() => addModule("Products")}>
+            <ProductsIcon />
+            <ModuleItemText>Products</ModuleItemText>
           </ModuleItem>
         </ModuleList>
       )}

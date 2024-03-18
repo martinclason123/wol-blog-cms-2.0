@@ -5,3 +5,4 @@ export { default as ImageWithQuotePreview } from "./ImageWithQuote";
 export { default as ImagePreview } from "./ImagePreview";
 export { default as ImageWithTextPreview } from "./ImageWithText";
 export { default as YouTubeVideoPreview } from "./YouTubeVideoPreview";
+export { default as ProductsPreview } from "./ProductsPreview";

@@ -133,10 +133,39 @@ export interface ImageModule {
   };
 }
 
+export interface ProductsModule {
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+  snippet: (elements: { [key: string]: Text }) => string;
+  preview: React.ComponentType<{ elements: { [key: string]: Text } }>;
+  elements: {
+    product1Image: Image;
+    product2Image: Image;
+    product3Image: Image;
+    product4Image: Image;
+    product1Alt: Text;
+    product2Alt: Text;
+    product3Alt: Text;
+    product4Alt: Text;
+    product1Link: Text;
+    product2Link: Text;
+    product3Link: Text;
+    product4Link: Text;
+  };
+  imageAttributes: {
+    mobileWidth: string;
+    mobileHeight: string;
+    desktopWidth: string;
+    desktopHeight: string;
+  };
+}
+
 export type Module =
   | HeaderBannerModule
   | QuoteModule
   | TextModule
   | ImageWithQuoteModule
   | YouTubeVideoModule
-  | ImageWithTextModule;
+  | ImageWithTextModule
+  | ProductsModule;

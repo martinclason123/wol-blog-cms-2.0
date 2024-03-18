@@ -1,5 +1,4 @@
 const ImageWithTextSnippet = (elements, imagesPath) => {
-  console.log("ImageWithTextSnippet", elements, imagesPath);
   //   image variables
   const altText = elements.altText?.value || "";
   const desktopHeight = elements.desktopAttributes?.value?.height || "";
