@@ -12,7 +12,7 @@ import {
   EditorElementLabel,
   EditorElementInput,
   EditorPaneWrapper,
-} from "../../styles/EditorPaneStyles";
+} from "../../styles/editorPaneStyles";
 
 const EditorPane = () => {
   const {
