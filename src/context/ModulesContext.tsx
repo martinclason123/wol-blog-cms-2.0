@@ -26,7 +26,7 @@ type ModulesContextState = {
   viewMode: ViewMode;
   toggleViewMode: () => void;
   previewContent: ViewMode;
-  setPreviewContent: () => void;
+  setPreviewContent: (content: any) => void;
   setSelectedModuleAndElement: (
     moduleId: number | null,
     elementKey: string | null
