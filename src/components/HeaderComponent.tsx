@@ -6,14 +6,7 @@ import {
   HeaderComponentButtons,
   ToolBarRight,
 } from "../styles/HeaderComponentStyles";
-import {
-  DesktopIcon,
-  MobileIcon,
-  ImageIcon,
-  DownloadIcon,
-  PreviewIcon,
-  CodeIcon,
-} from "@/svgs";
+import { DesktopIcon, MobileIcon, DownloadIcon, PreviewIcon } from "@/svgs";
 import { ModulesContext } from "@/context/ModulesContext";
 
 const HeaderComponent = () => {

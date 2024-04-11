@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@monaco-editor/react": "^4.6.0",
     "archiver": "^6.0.1",
     "fluent-ffmpeg": "^2.1.2",
