@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-
+import Link from "next/link";
 import styled from "styled-components";
 import { Container } from "@/styles/commonStyles";
 
@@ -152,7 +152,7 @@ const TopBar = () => {
                     <MenuItem>Profile</MenuItem>
                     <Divider />
                     <MenuItem>
-                      <a href="/api/auth/logout">Log out</a>
+                      <Link href="/api/auth/logout">Log out</Link>
                     </MenuItem>
                   </Menu>
                 </SubMenuInner>
