@@ -1,8 +1,6 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import ModuleComponent from "@/components/ModuleComponent";
+// page.tsx
 import CMSLayout from "@/components/CMSLayout";
 
-export default function Home() {
+export default function Page() {
   return <CMSLayout />;
 }
